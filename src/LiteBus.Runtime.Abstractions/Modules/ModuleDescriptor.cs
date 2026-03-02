@@ -30,18 +30,20 @@ public readonly record struct ModuleDescriptor(
     /// <param name="module">The module to create a descriptor for.</param>
     /// <returns>A new ModuleDescriptor with analyzed dependencies.</returns>
     /// <exception cref="System.ArgumentNullException">Thrown when module is null.</exception>
+    /// <remarks>
+    ///     Module types are always concrete, directly-instantiated classes whose interfaces are
+    ///     preserved by the linker, so the IL2075 warning about <c>GetInterfaces()</c> is suppressed.
+    /// </remarks>
+    [UnconditionalSuppressMessage("Trimming", "IL2075",
+        Justification = "Module types are always concrete, directly-instantiated classes registered " +
+                        "at startup. Their interfaces are preserved by the trimmer.")]
     public static ModuleDescriptor Create(IModule module)
     {
         ArgumentNullException.ThrowIfNull(module);
 
         var moduleType = module.GetType();
 
-        // Find all IRequires<T> interfaces implemented by this module.
-        // Module types are always concrete, directly-instantiated classes so their
-        // interfaces are preserved by the linker. Suppress the analyzer warning here.
-#pragma warning disable IL2075
         var dependencies = moduleType.GetInterfaces()
-#pragma warning restore IL2075
             .Where(static i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IRequires<>))
             .Select(static i => i.GetGenericArguments()[0]) // Extract T from IRequires<T>
             .ToHashSet();

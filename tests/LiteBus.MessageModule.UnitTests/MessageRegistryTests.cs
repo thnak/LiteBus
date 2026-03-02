@@ -215,52 +215,50 @@ public sealed class MessageRegistryTests : LiteBusTestBase
     // --- Open Generic Handler Tests ---
 
     [Fact]
-    public void Register_OpenGenericHandler_ShouldLinkToExistingConcreteMessageType()
+    public void Register_ClosedGenericPreHandler_ShouldLinkToConcreteMessageType()
     {
-        // Arrange
+        // Arrange — register the concrete handler first; the source generator would emit
+        // typeof(OpenGenericTestPreHandler<TestCommand>) rather than the open generic form.
         var registry = new MessageRegistry();
-
-        // Register a concrete handler first (which also registers the message type)
         registry.Register(typeof(TestCommandHandler));
 
-        // Act - register the open generic handler
-        registry.Register(typeof(OpenGenericTestPreHandler<>));
+        // Act — register the closed form as the source generator emits it
+        registry.Register(typeof(OpenGenericTestPreHandler<TestCommand>));
 
-        // Assert - the open generic should be closed for TestCommand
+        // Assert
         var messageDescriptor = registry.Single(d => d.MessageType == typeof(TestCommand));
         messageDescriptor.PreHandlers.Should().HaveCount(1);
         messageDescriptor.PreHandlers.First().HandlerType.Should().Be(typeof(OpenGenericTestPreHandler<TestCommand>));
     }
 
     [Fact]
-    public void Register_ConcreteMessageAfterOpenGenericHandler_ShouldLinkOpenGenericHandler()
+    public void Register_ConcreteMessageAfterClosedGenericPreHandler_ShouldLink()
     {
-        // Arrange
+        // Arrange — register the closed form before the command handler;
+        // registration order does not matter for closed forms.
         var registry = new MessageRegistry();
+        registry.Register(typeof(OpenGenericTestPreHandler<TestCommand>));
 
-        // Register the open generic handler first
-        registry.Register(typeof(OpenGenericTestPreHandler<>));
-
-        // Act - register a concrete handler (which also registers the message type)
+        // Act
         registry.Register(typeof(TestCommandHandler));
 
-        // Assert - the open generic should be closed for TestCommand
+        // Assert
         var messageDescriptor = registry.Single(d => d.MessageType == typeof(TestCommand));
         messageDescriptor.PreHandlers.Should().HaveCount(1);
         messageDescriptor.PreHandlers.First().HandlerType.Should().Be(typeof(OpenGenericTestPreHandler<TestCommand>));
     }
 
     [Fact]
-    public void Register_OpenGenericHandler_ShouldApplyToMultipleConcreteMessageTypes()
+    public void Register_ClosedGenericPreHandler_ShouldApplyToMultipleConcreteMessageTypes()
     {
-        // Arrange
+        // Arrange — source generator emits one closed form per message type.
         var registry = new MessageRegistry();
-
         registry.Register(typeof(TestCommandHandler));
         registry.Register(typeof(AnotherTestCommand));
 
         // Act
-        registry.Register(typeof(OpenGenericTestPreHandler<>));
+        registry.Register(typeof(OpenGenericTestPreHandler<TestCommand>));
+        registry.Register(typeof(OpenGenericTestPreHandler<AnotherTestCommand>));
 
         // Assert
         var testCommandDescriptor = registry.Single(d => d.MessageType == typeof(TestCommand));
@@ -281,24 +279,30 @@ public sealed class MessageRegistryTests : LiteBusTestBase
         // Register a non-ICommand event type
         registry.Register(typeof(TestRecordClass));
 
-        // Act - register an open generic handler constrained to ICommand
+        var countBeforeOpenGeneric = registry.Count;
+
+        // Act - registering an open generic type definition is silently ignored by the registry;
+        // only the closed form for the constrained type would be emitted by the source generator.
         registry.Register(typeof(OpenGenericTestPreHandler<>));
 
         // Assert - the event type should not have the command pre-handler
         var eventDescriptor = registry.Single(d => d.MessageType == typeof(TestRecordClass));
         eventDescriptor.PreHandlers.Should().BeEmpty();
+
+        // The silently-ignored open-generic registration must not add any new message descriptors.
+        registry.Count.Should().Be(countBeforeOpenGeneric);
     }
 
     [Fact]
-    public void Register_OpenGenericHandlerTwice_ShouldOnlyRegisterOnce()
+    public void Register_ClosedGenericHandlerTwice_ShouldOnlyRegisterOnce()
     {
         // Arrange
         var registry = new MessageRegistry();
         registry.Register(typeof(TestCommandHandler));
 
-        // Act
-        registry.Register(typeof(OpenGenericTestPreHandler<>));
-        registry.Register(typeof(OpenGenericTestPreHandler<>));
+        // Act — registering the same closed form twice should be idempotent
+        registry.Register(typeof(OpenGenericTestPreHandler<TestCommand>));
+        registry.Register(typeof(OpenGenericTestPreHandler<TestCommand>));
 
         // Assert
         var messageDescriptor = registry.Single(d => d.MessageType == typeof(TestCommand));
@@ -306,11 +310,11 @@ public sealed class MessageRegistryTests : LiteBusTestBase
     }
 
     [Fact]
-    public void Clear_ShouldClearOpenGenericHandlers()
+    public void Clear_ShouldClearRegisteredHandlers()
     {
-        // Arrange
+        // Arrange — use the closed form as the source generator would emit.
         var registry = new MessageRegistry();
-        registry.Register(typeof(OpenGenericTestPreHandler<>));
+        registry.Register(typeof(OpenGenericTestPreHandler<TestCommand>));
         registry.Register(typeof(TestCommandHandler));
 
         // Verify it was registered
@@ -319,10 +323,10 @@ public sealed class MessageRegistryTests : LiteBusTestBase
         // Act
         registry.Clear();
 
-        // Register again without the open generic
+        // Register again without the pre-handler
         registry.Register(typeof(TestCommandHandler));
 
-        // Assert - open generic should not be applied after Clear
+        // Assert — pre-handler should not be present after Clear
         var descriptor = registry.Single(d => d.MessageType == typeof(TestCommand));
         descriptor.PreHandlers.Should().BeEmpty();
     }

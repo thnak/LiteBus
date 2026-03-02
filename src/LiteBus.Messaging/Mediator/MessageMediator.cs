@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using LiteBus.Messaging.Abstractions;
 using LiteBus.Messaging.Contexts.Execution;
 
@@ -49,6 +50,9 @@ internal sealed class MessageMediator : IMessageMediator
     ///     Thrown when no descriptor can be found for the message type with the
     ///     specified resolve strategy.
     /// </exception>
+    [UnconditionalSuppressMessage("Trimming", "IL2072",
+        Justification = "RegisterPlainMessagesOnSpot is an inherently non-AOT path used only for event mediation " +
+                        "when ThrowIfNoHandlerFound=false. AOT users must pre-register all message types.")]
     public TMessageResult Mediate<TMessage, TMessageResult>(TMessage message,
                                                             MediateOptions<TMessage, TMessageResult> options) where TMessage : notnull
     {
@@ -74,9 +78,7 @@ internal sealed class MessageMediator : IMessageMediator
             // RegisterPlainMessagesOnSpot is inherently incompatible with AOT/trimming since the
             // runtime message type cannot be known at compile time. Users who need AOT compatibility
             // should pre-register all message types and set RegisterPlainMessagesOnSpot = false.
-#pragma warning disable IL2072
             _messageRegistry.Register(messageType);
-#pragma warning restore IL2072
 
             descriptor = options.MessageResolveStrategy.Find(messageType, _messageRegistry);
         }

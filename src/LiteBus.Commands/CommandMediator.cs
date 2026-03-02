@@ -37,10 +37,7 @@ public sealed class CommandMediator : ICommandMediator
         ArgumentNullException.ThrowIfNull(command);
 
         // Check if the command should be diverted to the inbox for durable processing.
-        // The command type's attributes are preserved because commands must be registered via Register<T>().
-#pragma warning disable IL2072
         if (ShouldBeStoredInInbox(command.GetType(), commandMediationSettings))
-#pragma warning restore IL2072
         {
             // The command is stored for deferred execution by the background processor.
             return _commandInbox!.StoreAsync(command, cancellationToken);
@@ -71,10 +68,7 @@ public sealed class CommandMediator : ICommandMediator
         ArgumentNullException.ThrowIfNull(command);
 
         // Check if the command should be diverted to the inbox for durable processing.
-        // The command type's attributes are preserved because commands must be registered via Register<T>().
-#pragma warning disable IL2072
         if (ShouldBeStoredInInbox(command.GetType(), commandMediationSettings))
-#pragma warning restore IL2072
         {
             // The command is stored for deferred execution.
             _commandInbox!.StoreAsync(command, cancellationToken);
@@ -105,8 +99,16 @@ public sealed class CommandMediator : ICommandMediator
     /// <summary>
     ///     Determines if a command should be stored in the inbox for deferred processing.
     /// </summary>
+    /// <remarks>
+    ///     The IL2026 warning (calling <c>Attribute.GetCustomAttribute</c> with an unannotated <c>Type</c>)
+    ///     is suppressed because command types must be registered via <c>Register&lt;T&gt;()</c> or the
+    ///     source generator, both of which preserve the type's custom attributes for the trimmer.
+    /// </remarks>
+    [UnconditionalSuppressMessage("Trimming", "IL2026",
+        Justification = "Command types are registered via Register<T>() or the source generator, both of which " +
+                        "preserve the type's custom attributes so StoreInInboxAttribute is always accessible.")]
     private bool ShouldBeStoredInInbox(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type commandType,
+        Type commandType,
         CommandMediationSettings? settings)
     {
         ArgumentNullException.ThrowIfNull(commandType);
