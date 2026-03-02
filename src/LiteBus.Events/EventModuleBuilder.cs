@@ -83,8 +83,6 @@ public sealed class EventModuleBuilder
     /// </summary>
     /// <param name="assembly">The assembly from which to register event types.</param>
     /// <returns>The current <see cref="EventModuleBuilder" /> instance for method chaining.</returns>
-    [RequiresUnreferencedCode("RegisterFromAssembly uses Assembly.GetTypes() which is not compatible with trimming. Use Register<T>() for each type instead.")]
-    [RequiresDynamicCode("RegisterFromAssembly uses Assembly.GetTypes() which is not compatible with Native AOT. Use Register<T>() for each type instead.")]
     public EventModuleBuilder RegisterFromAssembly(Assembly assembly)
     {
         foreach (var registrableEventConstruct in assembly.GetTypes().Where(t => t.IsAssignableTo(typeof(IRegistrableEventConstruct))))

@@ -14,7 +14,6 @@ internal sealed class MessageDependencies : IMessageDependencies
     private readonly Type _messageType;
     private readonly IEnumerable<string> _tags;
 
-    [RequiresDynamicCode("Resolving generic message handler types requires dynamic code generation for MakeGenericType.")]
     public MessageDependencies(Type messageType,
                                IMessageDescriptor descriptor,
                                IServiceProvider serviceProvider,
@@ -57,7 +56,6 @@ internal sealed class MessageDependencies : IMessageDependencies
     /// <summary>
     ///     Resolves handlers from the provided descriptors and a handler resolution function.
     /// </summary>
-    [RequiresDynamicCode("Resolving generic handler types requires dynamic code generation for MakeGenericType.")]
     private ILazyHandlerCollection<THandler, TDescriptor> ResolveHandlers<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] THandler, TDescriptor>(
         IEnumerable<TDescriptor> descriptors,
         Func<Type, THandler> resolveFunc) where TDescriptor : IHandlerDescriptor
@@ -77,7 +75,6 @@ internal sealed class MessageDependencies : IMessageDependencies
     /// <summary>
     ///     Retrieves the handler type from a descriptor, adjusting for generic types as necessary.
     /// </summary>
-    [RequiresDynamicCode("Resolving generic handler types requires dynamic code generation for MakeGenericType.")]
     private Type GetHandlerType(IHandlerDescriptor descriptor)
     {
         var handlerType = descriptor.HandlerType;

@@ -250,7 +250,6 @@ internal sealed class MessageRegistry : IMessageRegistry
     ///     Stores an open generic handler type and retroactively closes it for all already-known message types.
     /// </summary>
     /// <param name="openGenericHandlerType">The open generic handler type (e.g., GenericValidator&lt;&gt;).</param>
-    [RequiresDynamicCode("Open generic handler support requires dynamic code generation for MakeGenericType.")]
     private void StoreOpenGenericHandler(
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type openGenericHandlerType)
     {
@@ -282,7 +281,6 @@ internal sealed class MessageRegistry : IMessageRegistry
     ///     If true, directly adds descriptors to the message descriptor.
     ///     Set to true for committed messages, false for pending messages (to avoid double-linking).
     /// </param>
-    [RequiresDynamicCode("Closing open generic handler types requires dynamic code generation for MakeGenericType.")]
     private void TryCloseOpenGenericHandler(
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type openGenericHandlerType,
         MessageDescriptor messageDescriptor,

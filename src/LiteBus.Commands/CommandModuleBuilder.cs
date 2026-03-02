@@ -83,8 +83,6 @@ public sealed class CommandModuleBuilder
     /// </summary>
     /// <param name="assembly">The assembly from which to register command types.</param>
     /// <returns>The current <see cref="CommandModuleBuilder" /> instance for method chaining.</returns>
-    [RequiresUnreferencedCode("RegisterFromAssembly uses Assembly.GetTypes() which is not compatible with trimming. Use Register<T>() for each type instead.")]
-    [RequiresDynamicCode("RegisterFromAssembly uses Assembly.GetTypes() which is not compatible with Native AOT. Use Register<T>() for each type instead.")]
     public CommandModuleBuilder RegisterFromAssembly(Assembly assembly)
     {
         foreach (var registrableCommandConstruct in assembly.GetTypes().Where(t => t.IsAssignableTo(typeof(IRegistrableCommandConstruct))))

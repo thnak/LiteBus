@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using LiteBus.Events.Abstractions;
 using LiteBus.Events.MediationStrategies;
@@ -16,8 +15,6 @@ public sealed class EventMediator : IEventPublisher
     {
         _messageMediator = messageMediator;
     }
-
-    [RequiresDynamicCode("Mediating events with generic handler types requires dynamic code generation for MakeGenericType.")]
     public Task PublishAsync(IEvent @event, EventMediationSettings? eventMediationSettings = null, CancellationToken cancellationToken = default)
     {
         eventMediationSettings ??= new EventMediationSettings();
@@ -35,8 +32,6 @@ public sealed class EventMediator : IEventPublisher
             RegisterPlainMessagesOnSpot = !eventMediationSettings.ThrowIfNoHandlerFound
         });
     }
-
-    [RequiresDynamicCode("Mediating events with generic handler types requires dynamic code generation for MakeGenericType.")]
     public Task PublishAsync<TEvent>(TEvent @event, EventMediationSettings? eventMediationSettings = null, CancellationToken cancellationToken = default) where TEvent : notnull
     {
         eventMediationSettings ??= new EventMediationSettings();

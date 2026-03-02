@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using LiteBus.Messaging.Abstractions;
 using LiteBus.Messaging.Contexts.Execution;
 
@@ -50,7 +49,6 @@ internal sealed class MessageMediator : IMessageMediator
     ///     Thrown when no descriptor can be found for the message type with the
     ///     specified resolve strategy.
     /// </exception>
-    [RequiresDynamicCode("Mediating messages with generic handler types requires dynamic code generation for MakeGenericType.")]
     public TMessageResult Mediate<TMessage, TMessageResult>(TMessage message,
                                                             MediateOptions<TMessage, TMessageResult> options) where TMessage : notnull
     {

@@ -32,7 +32,6 @@ public sealed class CommandMediator : ICommandMediator
     }
 
     /// <inheritdoc />
-    [RequiresDynamicCode("Mediating commands with generic handler types requires dynamic code generation for MakeGenericType.")]
     public Task SendAsync(ICommand command, CommandMediationSettings? commandMediationSettings = null, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(command);
@@ -65,7 +64,6 @@ public sealed class CommandMediator : ICommandMediator
     }
 
     /// <inheritdoc />
-    [RequiresDynamicCode("Mediating commands with generic handler types requires dynamic code generation for MakeGenericType.")]
     public Task<TCommandResult> SendAsync<TCommandResult>(ICommand<TCommandResult> command,
                                                           CommandMediationSettings? commandMediationSettings = null,
                                                           CancellationToken cancellationToken = default)

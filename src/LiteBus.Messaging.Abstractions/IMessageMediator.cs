@@ -1,5 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-
 namespace LiteBus.Messaging.Abstractions;
 
 /// <summary>
@@ -25,7 +23,6 @@ public interface IMessageMediator
     ///     exceptions occur.
     ///     The specific behavior is determined by the mediation strategy specified in the options.
     /// </remarks>
-    [RequiresDynamicCode("Mediating messages with generic handler types requires dynamic code generation for MakeGenericType.")]
     TMessageResult Mediate<TMessage, TMessageResult>(TMessage message, MediateOptions<TMessage, TMessageResult> options)
         where TMessage : notnull;
 }

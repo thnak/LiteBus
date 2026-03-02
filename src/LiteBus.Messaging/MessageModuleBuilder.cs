@@ -47,8 +47,6 @@ public sealed class MessageModuleBuilder
         return this;
     }
 
-    [RequiresUnreferencedCode("RegisterFromAssembly uses Assembly.GetTypes() which is not compatible with trimming. Use Register<T>() for each type instead.")]
-    [RequiresDynamicCode("RegisterFromAssembly uses Assembly.GetTypes() which is not compatible with Native AOT. Use Register<T>() for each type instead.")]
     public MessageModuleBuilder RegisterFromAssembly(Assembly assembly)
     {
         foreach (var type in assembly.GetTypes())

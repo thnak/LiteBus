@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -24,7 +23,6 @@ public static class QueryMediatorExtensions
     /// var result = await queryMediator.QueryAsync(myQuery, cancellationToken);
     /// </code>
     /// </example>
-    [RequiresDynamicCode("Mediating queries with generic handler types requires dynamic code generation for MakeGenericType.")]
     public static Task<TQueryResult> QueryAsync<TQueryResult>(this IQueryMediator queryMediator,
                                                               IQuery<TQueryResult> query,
                                                               CancellationToken cancellationToken = default)
@@ -49,7 +47,6 @@ public static class QueryMediatorExtensions
     /// }
     /// </code>
     /// </example>
-    [RequiresDynamicCode("Mediating queries with generic handler types requires dynamic code generation for MakeGenericType.")]
     public static IAsyncEnumerable<TQueryResult> StreamAsync<TQueryResult>(this IQueryMediator queryMediator,
                                                                            IStreamQuery<TQueryResult> query,
                                                                            CancellationToken cancellationToken = default)
@@ -72,7 +69,6 @@ public static class QueryMediatorExtensions
     /// var result = await queryMediator.QueryAsync(myQuery, "UserQuery", cancellationToken);
     /// </code>
     /// </example>
-    [RequiresDynamicCode("Mediating queries with generic handler types requires dynamic code generation for MakeGenericType.")]
     public static Task<TQueryResult> QueryAsync<TQueryResult>(this IQueryMediator queryMediator,
                                                               IQuery<TQueryResult> query,
                                                               string tag,
@@ -107,7 +103,6 @@ public static class QueryMediatorExtensions
     /// }
     /// </code>
     /// </example>
-    [RequiresDynamicCode("Mediating queries with generic handler types requires dynamic code generation for MakeGenericType.")]
     public static IAsyncEnumerable<TQueryResult> StreamAsync<TQueryResult>(this IQueryMediator queryMediator,
                                                                            IStreamQuery<TQueryResult> query,
                                                                            string tag,
