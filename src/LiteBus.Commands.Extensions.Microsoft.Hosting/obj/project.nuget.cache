@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "dgSpecHash": "PID5NZv+Ejo=",
+  "success": true,
+  "projectFilePath": "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Commands.Extensions.Microsoft.Hosting/LiteBus.Commands.Extensions.Microsoft.Hosting.csproj",
+  "expectedPackageFiles": [
+    "/home/runner/.nuget/packages/microsoft.build.tasks.git/10.0.102/microsoft.build.tasks.git.10.0.102.nupkg.sha512",
+    "/home/runner/.nuget/packages/microsoft.extensions.configuration.abstractions/10.0.2/microsoft.extensions.configuration.abstractions.10.0.2.nupkg.sha512",
+    "/home/runner/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/10.0.2/microsoft.extensions.dependencyinjection.abstractions.10.0.2.nupkg.sha512",
+    "/home/runner/.nuget/packages/microsoft.extensions.diagnostics.abstractions/10.0.2/microsoft.extensions.diagnostics.abstractions.10.0.2.nupkg.sha512",
+    "/home/runner/.nuget/packages/microsoft.extensions.fileproviders.abstractions/10.0.2/microsoft.extensions.fileproviders.abstractions.10.0.2.nupkg.sha512",
+    "/home/runner/.nuget/packages/microsoft.extensions.hosting.abstractions/10.0.2/microsoft.extensions.hosting.abstractions.10.0.2.nupkg.sha512",
+    "/home/runner/.nuget/packages/microsoft.extensions.logging.abstractions/10.0.2/microsoft.extensions.logging.abstractions.10.0.2.nupkg.sha512",
+    "/home/runner/.nuget/packages/microsoft.extensions.options/10.0.2/microsoft.extensions.options.10.0.2.nupkg.sha512",
+    "/home/runner/.nuget/packages/microsoft.extensions.primitives/10.0.2/microsoft.extensions.primitives.10.0.2.nupkg.sha512",
+    "/home/runner/.nuget/packages/microsoft.sourcelink.common/10.0.102/microsoft.sourcelink.common.10.0.102.nupkg.sha512",
+    "/home/runner/.nuget/packages/microsoft.sourcelink.github/10.0.102/microsoft.sourcelink.github.10.0.102.nupkg.sha512",
+    "/home/runner/.nuget/packages/system.diagnostics.diagnosticsource/10.0.2/system.diagnostics.diagnosticsource.10.0.2.nupkg.sha512",
+    "/home/runner/.nuget/packages/microsoft.netcore.app.ref/8.0.23/microsoft.netcore.app.ref.8.0.23.nupkg.sha512",
+    "/home/runner/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.23/microsoft.aspnetcore.app.ref.8.0.23.nupkg.sha512",
+    "/home/runner/.nuget/packages/microsoft.netcore.app.ref/9.0.12/microsoft.netcore.app.ref.9.0.12.nupkg.sha512",
+    "/home/runner/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.12/microsoft.aspnetcore.app.ref.9.0.12.nupkg.sha512"
+  ],
+  "logs": []
+}

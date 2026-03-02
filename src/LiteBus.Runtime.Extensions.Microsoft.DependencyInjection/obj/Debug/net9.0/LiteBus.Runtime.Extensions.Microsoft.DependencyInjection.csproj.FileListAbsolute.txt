@@ -1,0 +1,6 @@
+/home/runner/work/LiteBus/LiteBus/src/LiteBus.Runtime.Extensions.Microsoft.DependencyInjection/obj/Debug/net9.0/LiteBus.Runtime.Extensions.Microsoft.DependencyInjection.csproj.AssemblyReference.cache
+/home/runner/work/LiteBus/LiteBus/src/LiteBus.Runtime.Extensions.Microsoft.DependencyInjection/obj/Debug/net9.0/LiteBus.Runtime.Extensions.Microsoft.DependencyInjection.GeneratedMSBuildEditorConfig.editorconfig
+/home/runner/work/LiteBus/LiteBus/src/LiteBus.Runtime.Extensions.Microsoft.DependencyInjection/obj/Debug/net9.0/LiteBus.Runtime.Extensions.Microsoft.DependencyInjection.AssemblyInfoInputs.cache
+/home/runner/work/LiteBus/LiteBus/src/LiteBus.Runtime.Extensions.Microsoft.DependencyInjection/obj/Debug/net9.0/LiteBus.Runtime.Extensions.Microsoft.DependencyInjection.AssemblyInfo.cs
+/home/runner/work/LiteBus/LiteBus/src/LiteBus.Runtime.Extensions.Microsoft.DependencyInjection/obj/Debug/net9.0/LiteBus.Runtime.Extensions.Microsoft.DependencyInjection.csproj.CoreCompileInputs.cache
+/home/runner/work/LiteBus/LiteBus/src/LiteBus.Runtime.Extensions.Microsoft.DependencyInjection/obj/Debug/net9.0/LiteBus.Runtime.Extensions.Microsoft.DependencyInjection.sourcelink.json

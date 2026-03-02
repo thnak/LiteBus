@@ -1,0 +1,105 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "LiteBus.Samples/1.0.0": {
+        "dependencies": {
+          "LiteBus.Commands.Abstractions": "1.0.0",
+          "LiteBus.Events.Abstractions": "1.0.0",
+          "LiteBus.Queries.Abstractions": "1.0.0"
+        },
+        "runtime": {
+          "LiteBus.Samples.dll": {}
+        }
+      },
+      "LiteBus.Commands.Abstractions/1.0.0": {
+        "dependencies": {
+          "LiteBus.Messaging.Abstractions": "1.0.0"
+        },
+        "runtime": {
+          "LiteBus.Commands.Abstractions.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "LiteBus.Events.Abstractions/1.0.0": {
+        "dependencies": {
+          "LiteBus.Messaging.Abstractions": "1.0.0"
+        },
+        "runtime": {
+          "LiteBus.Events.Abstractions.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "LiteBus.Messaging.Abstractions/1.0.0": {
+        "dependencies": {
+          "LiteBus.Runtime.Abstractions": "1.0.0"
+        },
+        "runtime": {
+          "LiteBus.Messaging.Abstractions.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "LiteBus.Queries.Abstractions/1.0.0": {
+        "dependencies": {
+          "LiteBus.Messaging.Abstractions": "1.0.0"
+        },
+        "runtime": {
+          "LiteBus.Queries.Abstractions.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "LiteBus.Runtime.Abstractions/1.0.0": {
+        "runtime": {
+          "LiteBus.Runtime.Abstractions.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "LiteBus.Samples/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LiteBus.Commands.Abstractions/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LiteBus.Events.Abstractions/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LiteBus.Messaging.Abstractions/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LiteBus.Queries.Abstractions/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LiteBus.Runtime.Abstractions/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

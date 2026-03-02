@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "LiteBus.Messaging.Abstractions/1.0.0": {
+        "dependencies": {
+          "LiteBus.Runtime.Abstractions": "1.0.0"
+        },
+        "runtime": {
+          "LiteBus.Messaging.Abstractions.dll": {}
+        }
+      },
+      "LiteBus.Runtime.Abstractions/1.0.0": {
+        "runtime": {
+          "LiteBus.Runtime.Abstractions.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "LiteBus.Messaging.Abstractions/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LiteBus.Runtime.Abstractions/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

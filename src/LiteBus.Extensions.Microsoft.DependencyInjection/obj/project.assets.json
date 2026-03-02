@@ -1,0 +1,2126 @@
+{
+  "version": 3,
+  "targets": {
+    "net10.0": {
+      "Microsoft.Build.Tasks.Git/10.0.102": {
+        "type": "package",
+        "build": {
+          "buildTransitive/Microsoft.Build.Tasks.Git.props": {},
+          "buildTransitive/Microsoft.Build.Tasks.Git.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Microsoft.Build.Tasks.Git.props": {},
+          "buildMultiTargeting/Microsoft.Build.Tasks.Git.targets": {}
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/10.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
+      },
+      "Microsoft.SourceLink.Common/10.0.102": {
+        "type": "package",
+        "build": {
+          "buildTransitive/Microsoft.SourceLink.Common.props": {},
+          "buildTransitive/Microsoft.SourceLink.Common.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Microsoft.SourceLink.Common.props": {},
+          "buildMultiTargeting/Microsoft.SourceLink.Common.targets": {}
+        }
+      },
+      "Microsoft.SourceLink.GitHub/10.0.102": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Build.Tasks.Git": "10.0.102",
+          "Microsoft.SourceLink.Common": "10.0.102"
+        },
+        "build": {
+          "build/Microsoft.SourceLink.GitHub.props": {},
+          "build/Microsoft.SourceLink.GitHub.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Microsoft.SourceLink.GitHub.props": {},
+          "buildMultiTargeting/Microsoft.SourceLink.GitHub.targets": {}
+        }
+      },
+      "LiteBus.Commands/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "LiteBus.Commands.Abstractions": "1.0.0",
+          "LiteBus.Messaging": "1.0.0",
+          "LiteBus.Runtime.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Commands.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Commands.dll": {}
+        }
+      },
+      "LiteBus.Commands.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "LiteBus.Messaging.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Commands.Abstractions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Commands.Abstractions.dll": {}
+        }
+      },
+      "LiteBus.Commands.Extensions.Microsoft.DependencyInjection/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "LiteBus.Commands": "1.0.0",
+          "LiteBus.Runtime.Extensions.Microsoft.DependencyInjection": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Commands.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Commands.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
+      "LiteBus.Events/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "LiteBus.Events.Abstractions": "1.0.0",
+          "LiteBus.Messaging": "1.0.0",
+          "LiteBus.Messaging.Abstractions": "1.0.0",
+          "LiteBus.Runtime.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Events.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Events.dll": {}
+        }
+      },
+      "LiteBus.Events.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "LiteBus.Messaging.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Events.Abstractions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Events.Abstractions.dll": {}
+        }
+      },
+      "LiteBus.Events.Extensions.Microsoft.DependencyInjection/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "LiteBus.Events": "1.0.0",
+          "LiteBus.Runtime.Extensions.Microsoft.DependencyInjection": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Events.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Events.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
+      "LiteBus.Messaging/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "LiteBus.Messaging.Abstractions": "1.0.0",
+          "LiteBus.Runtime.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Messaging.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Messaging.dll": {}
+        }
+      },
+      "LiteBus.Messaging.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "LiteBus.Runtime.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Messaging.Abstractions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Messaging.Abstractions.dll": {}
+        }
+      },
+      "LiteBus.Messaging.Extensions.Microsoft.DependencyInjection/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "LiteBus.Messaging": "1.0.0",
+          "LiteBus.Runtime.Extensions.Microsoft.DependencyInjection": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Messaging.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Messaging.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
+      "LiteBus.Queries/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "LiteBus.Messaging": "1.0.0",
+          "LiteBus.Queries.Abstractions": "1.0.0",
+          "LiteBus.Runtime.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Queries.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Queries.dll": {}
+        }
+      },
+      "LiteBus.Queries.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "LiteBus.Messaging.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Queries.Abstractions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Queries.Abstractions.dll": {}
+        }
+      },
+      "LiteBus.Queries.Extensions.Microsoft.DependencyInjection/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "LiteBus.Queries": "1.0.0",
+          "LiteBus.Runtime.Extensions.Microsoft.DependencyInjection": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Queries.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Queries.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
+      "LiteBus.Runtime/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "LiteBus.Runtime.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Runtime.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Runtime.dll": {}
+        }
+      },
+      "LiteBus.Runtime.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/LiteBus.Runtime.Abstractions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Runtime.Abstractions.dll": {}
+        }
+      },
+      "LiteBus.Runtime.Extensions.Microsoft.DependencyInjection/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "LiteBus.Runtime": "1.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.2"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Runtime.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Runtime.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      }
+    },
+    "net8.0": {
+      "Microsoft.Build.Tasks.Git/10.0.102": {
+        "type": "package",
+        "build": {
+          "buildTransitive/Microsoft.Build.Tasks.Git.props": {},
+          "buildTransitive/Microsoft.Build.Tasks.Git.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Microsoft.Build.Tasks.Git.props": {},
+          "buildMultiTargeting/Microsoft.Build.Tasks.Git.targets": {}
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/10.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
+      },
+      "Microsoft.SourceLink.Common/10.0.102": {
+        "type": "package",
+        "build": {
+          "buildTransitive/Microsoft.SourceLink.Common.props": {},
+          "buildTransitive/Microsoft.SourceLink.Common.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Microsoft.SourceLink.Common.props": {},
+          "buildMultiTargeting/Microsoft.SourceLink.Common.targets": {}
+        }
+      },
+      "Microsoft.SourceLink.GitHub/10.0.102": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Build.Tasks.Git": "10.0.102",
+          "Microsoft.SourceLink.Common": "10.0.102"
+        },
+        "build": {
+          "build/Microsoft.SourceLink.GitHub.props": {},
+          "build/Microsoft.SourceLink.GitHub.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Microsoft.SourceLink.GitHub.props": {},
+          "buildMultiTargeting/Microsoft.SourceLink.GitHub.targets": {}
+        }
+      },
+      "LiteBus.Commands/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "LiteBus.Commands.Abstractions": "1.0.0",
+          "LiteBus.Messaging": "1.0.0",
+          "LiteBus.Runtime.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Commands.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Commands.dll": {}
+        }
+      },
+      "LiteBus.Commands.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "LiteBus.Messaging.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Commands.Abstractions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Commands.Abstractions.dll": {}
+        }
+      },
+      "LiteBus.Commands.Extensions.Microsoft.DependencyInjection/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "LiteBus.Commands": "1.0.0",
+          "LiteBus.Runtime.Extensions.Microsoft.DependencyInjection": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Commands.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Commands.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
+      "LiteBus.Events/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "LiteBus.Events.Abstractions": "1.0.0",
+          "LiteBus.Messaging": "1.0.0",
+          "LiteBus.Messaging.Abstractions": "1.0.0",
+          "LiteBus.Runtime.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Events.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Events.dll": {}
+        }
+      },
+      "LiteBus.Events.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "LiteBus.Messaging.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Events.Abstractions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Events.Abstractions.dll": {}
+        }
+      },
+      "LiteBus.Events.Extensions.Microsoft.DependencyInjection/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "LiteBus.Events": "1.0.0",
+          "LiteBus.Runtime.Extensions.Microsoft.DependencyInjection": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Events.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Events.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
+      "LiteBus.Messaging/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "LiteBus.Messaging.Abstractions": "1.0.0",
+          "LiteBus.Runtime.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Messaging.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Messaging.dll": {}
+        }
+      },
+      "LiteBus.Messaging.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "LiteBus.Runtime.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Messaging.Abstractions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Messaging.Abstractions.dll": {}
+        }
+      },
+      "LiteBus.Messaging.Extensions.Microsoft.DependencyInjection/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "LiteBus.Messaging": "1.0.0",
+          "LiteBus.Runtime.Extensions.Microsoft.DependencyInjection": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Messaging.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Messaging.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
+      "LiteBus.Queries/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "LiteBus.Messaging": "1.0.0",
+          "LiteBus.Queries.Abstractions": "1.0.0",
+          "LiteBus.Runtime.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Queries.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Queries.dll": {}
+        }
+      },
+      "LiteBus.Queries.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "LiteBus.Messaging.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Queries.Abstractions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Queries.Abstractions.dll": {}
+        }
+      },
+      "LiteBus.Queries.Extensions.Microsoft.DependencyInjection/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "LiteBus.Queries": "1.0.0",
+          "LiteBus.Runtime.Extensions.Microsoft.DependencyInjection": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Queries.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Queries.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
+      "LiteBus.Runtime/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "LiteBus.Runtime.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Runtime.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Runtime.dll": {}
+        }
+      },
+      "LiteBus.Runtime.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/LiteBus.Runtime.Abstractions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Runtime.Abstractions.dll": {}
+        }
+      },
+      "LiteBus.Runtime.Extensions.Microsoft.DependencyInjection/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "LiteBus.Runtime": "1.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.2"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Runtime.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Runtime.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      }
+    },
+    "net9.0": {
+      "Microsoft.Build.Tasks.Git/10.0.102": {
+        "type": "package",
+        "build": {
+          "buildTransitive/Microsoft.Build.Tasks.Git.props": {},
+          "buildTransitive/Microsoft.Build.Tasks.Git.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Microsoft.Build.Tasks.Git.props": {},
+          "buildMultiTargeting/Microsoft.Build.Tasks.Git.targets": {}
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/10.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
+      },
+      "Microsoft.SourceLink.Common/10.0.102": {
+        "type": "package",
+        "build": {
+          "buildTransitive/Microsoft.SourceLink.Common.props": {},
+          "buildTransitive/Microsoft.SourceLink.Common.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Microsoft.SourceLink.Common.props": {},
+          "buildMultiTargeting/Microsoft.SourceLink.Common.targets": {}
+        }
+      },
+      "Microsoft.SourceLink.GitHub/10.0.102": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Build.Tasks.Git": "10.0.102",
+          "Microsoft.SourceLink.Common": "10.0.102"
+        },
+        "build": {
+          "build/Microsoft.SourceLink.GitHub.props": {},
+          "build/Microsoft.SourceLink.GitHub.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Microsoft.SourceLink.GitHub.props": {},
+          "buildMultiTargeting/Microsoft.SourceLink.GitHub.targets": {}
+        }
+      },
+      "LiteBus.Commands/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "LiteBus.Commands.Abstractions": "1.0.0",
+          "LiteBus.Messaging": "1.0.0",
+          "LiteBus.Runtime.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Commands.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Commands.dll": {}
+        }
+      },
+      "LiteBus.Commands.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "LiteBus.Messaging.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Commands.Abstractions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Commands.Abstractions.dll": {}
+        }
+      },
+      "LiteBus.Commands.Extensions.Microsoft.DependencyInjection/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "LiteBus.Commands": "1.0.0",
+          "LiteBus.Runtime.Extensions.Microsoft.DependencyInjection": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Commands.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Commands.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
+      "LiteBus.Events/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "LiteBus.Events.Abstractions": "1.0.0",
+          "LiteBus.Messaging": "1.0.0",
+          "LiteBus.Messaging.Abstractions": "1.0.0",
+          "LiteBus.Runtime.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Events.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Events.dll": {}
+        }
+      },
+      "LiteBus.Events.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "LiteBus.Messaging.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Events.Abstractions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Events.Abstractions.dll": {}
+        }
+      },
+      "LiteBus.Events.Extensions.Microsoft.DependencyInjection/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "LiteBus.Events": "1.0.0",
+          "LiteBus.Runtime.Extensions.Microsoft.DependencyInjection": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Events.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Events.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
+      "LiteBus.Messaging/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "LiteBus.Messaging.Abstractions": "1.0.0",
+          "LiteBus.Runtime.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Messaging.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Messaging.dll": {}
+        }
+      },
+      "LiteBus.Messaging.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "LiteBus.Runtime.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Messaging.Abstractions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Messaging.Abstractions.dll": {}
+        }
+      },
+      "LiteBus.Messaging.Extensions.Microsoft.DependencyInjection/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "LiteBus.Messaging": "1.0.0",
+          "LiteBus.Runtime.Extensions.Microsoft.DependencyInjection": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Messaging.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Messaging.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
+      "LiteBus.Queries/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "LiteBus.Messaging": "1.0.0",
+          "LiteBus.Queries.Abstractions": "1.0.0",
+          "LiteBus.Runtime.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Queries.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Queries.dll": {}
+        }
+      },
+      "LiteBus.Queries.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "LiteBus.Messaging.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Queries.Abstractions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Queries.Abstractions.dll": {}
+        }
+      },
+      "LiteBus.Queries.Extensions.Microsoft.DependencyInjection/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "LiteBus.Queries": "1.0.0",
+          "LiteBus.Runtime.Extensions.Microsoft.DependencyInjection": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Queries.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Queries.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
+      "LiteBus.Runtime/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "LiteBus.Runtime.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Runtime.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Runtime.dll": {}
+        }
+      },
+      "LiteBus.Runtime.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/LiteBus.Runtime.Abstractions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Runtime.Abstractions.dll": {}
+        }
+      },
+      "LiteBus.Runtime.Extensions.Microsoft.DependencyInjection/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "LiteBus.Runtime": "1.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.2"
+        },
+        "compile": {
+          "bin/placeholder/LiteBus.Runtime.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LiteBus.Runtime.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Microsoft.Build.Tasks.Git/10.0.102": {
+      "sha512": "0i81LYX31U6UiXz4NOLbvc++u+/mVDmOt+PskrM/MygpDxkv9THKQyRUmavBpLK6iBV0abNWnn+CQgSRz//Pwg==",
+      "type": "package",
+      "path": "microsoft.build.tasks.git/10.0.102",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.txt",
+        "build/Microsoft.Build.Tasks.Git.props",
+        "build/Microsoft.Build.Tasks.Git.targets",
+        "buildMultiTargeting/Microsoft.Build.Tasks.Git.props",
+        "buildMultiTargeting/Microsoft.Build.Tasks.Git.targets",
+        "buildTransitive/Microsoft.Build.Tasks.Git.props",
+        "buildTransitive/Microsoft.Build.Tasks.Git.targets",
+        "microsoft.build.tasks.git.10.0.102.nupkg.sha512",
+        "microsoft.build.tasks.git.nuspec",
+        "tools/net/Microsoft.Build.Tasks.Git.deps.json",
+        "tools/net/Microsoft.Build.Tasks.Git.dll",
+        "tools/net/Microsoft.Build.Tasks.Git.pdb",
+        "tools/net/cs/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/net/de/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/net/es/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/net/fr/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/net/it/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/net/ja/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/net/ko/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/net/pl/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/net/pt-BR/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/net/ru/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/net/tr/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/net/zh-Hans/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/net/zh-Hant/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/netframework/Microsoft.Build.Tasks.Git.dll",
+        "tools/netframework/Microsoft.Build.Tasks.Git.dll.config",
+        "tools/netframework/Microsoft.Build.Tasks.Git.pdb",
+        "tools/netframework/cs/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/netframework/de/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/netframework/es/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/netframework/fr/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/netframework/it/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/netframework/ja/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/netframework/ko/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/netframework/pl/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/netframework/pt-BR/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/netframework/ru/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/netframework/tr/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/netframework/zh-Hans/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/netframework/zh-Hant/Microsoft.Build.Tasks.Git.resources.dll"
+      ]
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/10.0.2": {
+      "sha512": "zOIurr59+kUf9vNcsUkCvKWZv+fPosUZXURZesYkJCvl0EzTc9F7maAO4Cd2WEV7ZJJ0AZrFQvuH6Npph9wdBw==",
+      "type": "package",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/10.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/Microsoft.Extensions.DependencyInjection.Abstractions.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net8.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.DependencyInjection.Abstractions.targets",
+        "lib/net10.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/net10.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/net462/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/net462/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "microsoft.extensions.dependencyinjection.abstractions.10.0.2.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.abstractions.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.SourceLink.Common/10.0.102": {
+      "sha512": "Mk1IMb9q5tahC2NltxYXFkLBtuBvfBoCQ3pIxYQWfzbCE9o1OB9SsHe0hnNGo7lWgTA/ePbFAJLWu6nLL9K17A==",
+      "type": "package",
+      "path": "microsoft.sourcelink.common/10.0.102",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.txt",
+        "build/InitializeSourceControlInformation.targets",
+        "build/Microsoft.SourceLink.Common.props",
+        "build/Microsoft.SourceLink.Common.targets",
+        "buildMultiTargeting/Microsoft.SourceLink.Common.props",
+        "buildMultiTargeting/Microsoft.SourceLink.Common.targets",
+        "buildTransitive/Microsoft.SourceLink.Common.props",
+        "buildTransitive/Microsoft.SourceLink.Common.targets",
+        "microsoft.sourcelink.common.10.0.102.nupkg.sha512",
+        "microsoft.sourcelink.common.nuspec",
+        "tools/net/Microsoft.SourceLink.Common.deps.json",
+        "tools/net/Microsoft.SourceLink.Common.dll",
+        "tools/net/Microsoft.SourceLink.Common.pdb",
+        "tools/net/cs/Microsoft.SourceLink.Common.resources.dll",
+        "tools/net/de/Microsoft.SourceLink.Common.resources.dll",
+        "tools/net/es/Microsoft.SourceLink.Common.resources.dll",
+        "tools/net/fr/Microsoft.SourceLink.Common.resources.dll",
+        "tools/net/it/Microsoft.SourceLink.Common.resources.dll",
+        "tools/net/ja/Microsoft.SourceLink.Common.resources.dll",
+        "tools/net/ko/Microsoft.SourceLink.Common.resources.dll",
+        "tools/net/pl/Microsoft.SourceLink.Common.resources.dll",
+        "tools/net/pt-BR/Microsoft.SourceLink.Common.resources.dll",
+        "tools/net/ru/Microsoft.SourceLink.Common.resources.dll",
+        "tools/net/tr/Microsoft.SourceLink.Common.resources.dll",
+        "tools/net/zh-Hans/Microsoft.SourceLink.Common.resources.dll",
+        "tools/net/zh-Hant/Microsoft.SourceLink.Common.resources.dll",
+        "tools/netframework/Microsoft.SourceLink.Common.dll",
+        "tools/netframework/Microsoft.SourceLink.Common.dll.config",
+        "tools/netframework/Microsoft.SourceLink.Common.pdb",
+        "tools/netframework/cs/Microsoft.SourceLink.Common.resources.dll",
+        "tools/netframework/de/Microsoft.SourceLink.Common.resources.dll",
+        "tools/netframework/es/Microsoft.SourceLink.Common.resources.dll",
+        "tools/netframework/fr/Microsoft.SourceLink.Common.resources.dll",
+        "tools/netframework/it/Microsoft.SourceLink.Common.resources.dll",
+        "tools/netframework/ja/Microsoft.SourceLink.Common.resources.dll",
+        "tools/netframework/ko/Microsoft.SourceLink.Common.resources.dll",
+        "tools/netframework/pl/Microsoft.SourceLink.Common.resources.dll",
+        "tools/netframework/pt-BR/Microsoft.SourceLink.Common.resources.dll",
+        "tools/netframework/ru/Microsoft.SourceLink.Common.resources.dll",
+        "tools/netframework/tr/Microsoft.SourceLink.Common.resources.dll",
+        "tools/netframework/zh-Hans/Microsoft.SourceLink.Common.resources.dll",
+        "tools/netframework/zh-Hant/Microsoft.SourceLink.Common.resources.dll"
+      ]
+    },
+    "Microsoft.SourceLink.GitHub/10.0.102": {
+      "sha512": "Oxq3RCIJSdtpIU4hLqO7XaDe/Ra3HS9Wi8rJl838SAg6Zu1iQjerA0+xXWBgUFYbgknUGCLOU0T+lzMLkvY9Qg==",
+      "type": "package",
+      "path": "microsoft.sourcelink.github/10.0.102",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.txt",
+        "build/Microsoft.SourceLink.GitHub.props",
+        "build/Microsoft.SourceLink.GitHub.targets",
+        "buildMultiTargeting/Microsoft.SourceLink.GitHub.props",
+        "buildMultiTargeting/Microsoft.SourceLink.GitHub.targets",
+        "microsoft.sourcelink.github.10.0.102.nupkg.sha512",
+        "microsoft.sourcelink.github.nuspec",
+        "tools/net/Microsoft.SourceLink.GitHub.deps.json",
+        "tools/net/Microsoft.SourceLink.GitHub.dll",
+        "tools/net/Microsoft.SourceLink.GitHub.pdb",
+        "tools/net/cs/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/net/de/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/net/es/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/net/fr/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/net/it/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/net/ja/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/net/ko/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/net/pl/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/net/pt-BR/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/net/ru/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/net/tr/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/net/zh-Hans/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/net/zh-Hant/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/netframework/Microsoft.SourceLink.GitHub.dll",
+        "tools/netframework/Microsoft.SourceLink.GitHub.dll.config",
+        "tools/netframework/Microsoft.SourceLink.GitHub.pdb",
+        "tools/netframework/cs/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/netframework/de/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/netframework/es/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/netframework/fr/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/netframework/it/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/netframework/ja/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/netframework/ko/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/netframework/pl/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/netframework/pt-BR/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/netframework/ru/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/netframework/tr/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/netframework/zh-Hans/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/netframework/zh-Hant/Microsoft.SourceLink.GitHub.resources.dll"
+      ]
+    },
+    "LiteBus.Commands/1.0.0": {
+      "type": "project",
+      "path": "../LiteBus.Commands/LiteBus.Commands.csproj",
+      "msbuildProject": "../LiteBus.Commands/LiteBus.Commands.csproj"
+    },
+    "LiteBus.Commands.Abstractions/1.0.0": {
+      "type": "project",
+      "path": "../LiteBus.Commands.Abstractions/LiteBus.Commands.Abstractions.csproj",
+      "msbuildProject": "../LiteBus.Commands.Abstractions/LiteBus.Commands.Abstractions.csproj"
+    },
+    "LiteBus.Commands.Extensions.Microsoft.DependencyInjection/1.0.0": {
+      "type": "project",
+      "path": "../LiteBus.Commands.Extensions.Microsoft.DependencyInjection/LiteBus.Commands.Extensions.Microsoft.DependencyInjection.csproj",
+      "msbuildProject": "../LiteBus.Commands.Extensions.Microsoft.DependencyInjection/LiteBus.Commands.Extensions.Microsoft.DependencyInjection.csproj"
+    },
+    "LiteBus.Events/1.0.0": {
+      "type": "project",
+      "path": "../LiteBus.Events/LiteBus.Events.csproj",
+      "msbuildProject": "../LiteBus.Events/LiteBus.Events.csproj"
+    },
+    "LiteBus.Events.Abstractions/1.0.0": {
+      "type": "project",
+      "path": "../LiteBus.Events.Abstractions/LiteBus.Events.Abstractions.csproj",
+      "msbuildProject": "../LiteBus.Events.Abstractions/LiteBus.Events.Abstractions.csproj"
+    },
+    "LiteBus.Events.Extensions.Microsoft.DependencyInjection/1.0.0": {
+      "type": "project",
+      "path": "../LiteBus.Events.Extensions.Microsoft.DependencyInjection/LiteBus.Events.Extensions.Microsoft.DependencyInjection.csproj",
+      "msbuildProject": "../LiteBus.Events.Extensions.Microsoft.DependencyInjection/LiteBus.Events.Extensions.Microsoft.DependencyInjection.csproj"
+    },
+    "LiteBus.Messaging/1.0.0": {
+      "type": "project",
+      "path": "../LiteBus.Messaging/LiteBus.Messaging.csproj",
+      "msbuildProject": "../LiteBus.Messaging/LiteBus.Messaging.csproj"
+    },
+    "LiteBus.Messaging.Abstractions/1.0.0": {
+      "type": "project",
+      "path": "../LiteBus.Messaging.Abstractions/LiteBus.Messaging.Abstractions.csproj",
+      "msbuildProject": "../LiteBus.Messaging.Abstractions/LiteBus.Messaging.Abstractions.csproj"
+    },
+    "LiteBus.Messaging.Extensions.Microsoft.DependencyInjection/1.0.0": {
+      "type": "project",
+      "path": "../LiteBus.Messaging.Extensions.Microsoft.DependencyInjection/LiteBus.Messaging.Extensions.Microsoft.DependencyInjection.csproj",
+      "msbuildProject": "../LiteBus.Messaging.Extensions.Microsoft.DependencyInjection/LiteBus.Messaging.Extensions.Microsoft.DependencyInjection.csproj"
+    },
+    "LiteBus.Queries/1.0.0": {
+      "type": "project",
+      "path": "../LiteBus.Queries/LiteBus.Queries.csproj",
+      "msbuildProject": "../LiteBus.Queries/LiteBus.Queries.csproj"
+    },
+    "LiteBus.Queries.Abstractions/1.0.0": {
+      "type": "project",
+      "path": "../LiteBus.Queries.Abstractions/LiteBus.Queries.Abstractions.csproj",
+      "msbuildProject": "../LiteBus.Queries.Abstractions/LiteBus.Queries.Abstractions.csproj"
+    },
+    "LiteBus.Queries.Extensions.Microsoft.DependencyInjection/1.0.0": {
+      "type": "project",
+      "path": "../LiteBus.Queries.Extensions.Microsoft.DependencyInjection/LiteBus.Queries.Extensions.Microsoft.DependencyInjection.csproj",
+      "msbuildProject": "../LiteBus.Queries.Extensions.Microsoft.DependencyInjection/LiteBus.Queries.Extensions.Microsoft.DependencyInjection.csproj"
+    },
+    "LiteBus.Runtime/1.0.0": {
+      "type": "project",
+      "path": "../LiteBus.Runtime/LiteBus.Runtime.csproj",
+      "msbuildProject": "../LiteBus.Runtime/LiteBus.Runtime.csproj"
+    },
+    "LiteBus.Runtime.Abstractions/1.0.0": {
+      "type": "project",
+      "path": "../LiteBus.Runtime.Abstractions/LiteBus.Runtime.Abstractions.csproj",
+      "msbuildProject": "../LiteBus.Runtime.Abstractions/LiteBus.Runtime.Abstractions.csproj"
+    },
+    "LiteBus.Runtime.Extensions.Microsoft.DependencyInjection/1.0.0": {
+      "type": "project",
+      "path": "../LiteBus.Runtime.Extensions.Microsoft.DependencyInjection/LiteBus.Runtime.Extensions.Microsoft.DependencyInjection.csproj",
+      "msbuildProject": "../LiteBus.Runtime.Extensions.Microsoft.DependencyInjection/LiteBus.Runtime.Extensions.Microsoft.DependencyInjection.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net10.0": [
+      "LiteBus.Commands.Extensions.Microsoft.DependencyInjection >= 1.0.0",
+      "LiteBus.Events.Extensions.Microsoft.DependencyInjection >= 1.0.0",
+      "LiteBus.Messaging.Extensions.Microsoft.DependencyInjection >= 1.0.0",
+      "LiteBus.Queries.Extensions.Microsoft.DependencyInjection >= 1.0.0",
+      "Microsoft.SourceLink.GitHub >= 10.0.102"
+    ],
+    "net8.0": [
+      "LiteBus.Commands.Extensions.Microsoft.DependencyInjection >= 1.0.0",
+      "LiteBus.Events.Extensions.Microsoft.DependencyInjection >= 1.0.0",
+      "LiteBus.Messaging.Extensions.Microsoft.DependencyInjection >= 1.0.0",
+      "LiteBus.Queries.Extensions.Microsoft.DependencyInjection >= 1.0.0",
+      "Microsoft.SourceLink.GitHub >= 10.0.102"
+    ],
+    "net9.0": [
+      "LiteBus.Commands.Extensions.Microsoft.DependencyInjection >= 1.0.0",
+      "LiteBus.Events.Extensions.Microsoft.DependencyInjection >= 1.0.0",
+      "LiteBus.Messaging.Extensions.Microsoft.DependencyInjection >= 1.0.0",
+      "LiteBus.Queries.Extensions.Microsoft.DependencyInjection >= 1.0.0",
+      "Microsoft.SourceLink.GitHub >= 10.0.102"
+    ]
+  },
+  "packageFolders": {
+    "/home/runner/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Extensions.Microsoft.DependencyInjection/LiteBus.Extensions.Microsoft.DependencyInjection.csproj",
+      "projectName": "LiteBus.Extensions.Microsoft.DependencyInjection",
+      "projectPath": "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Extensions.Microsoft.DependencyInjection/LiteBus.Extensions.Microsoft.DependencyInjection.csproj",
+      "packagesPath": "/home/runner/.nuget/packages/",
+      "outputPath": "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Extensions.Microsoft.DependencyInjection/obj/",
+      "projectStyle": "PackageReference",
+      "crossTargeting": true,
+      "centralPackageVersionsManagementEnabled": true,
+      "configFilePaths": [
+        "/home/runner/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net10.0",
+        "net8.0",
+        "net9.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "projectReferences": {
+            "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Commands.Extensions.Microsoft.DependencyInjection/LiteBus.Commands.Extensions.Microsoft.DependencyInjection.csproj": {
+              "projectPath": "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Commands.Extensions.Microsoft.DependencyInjection/LiteBus.Commands.Extensions.Microsoft.DependencyInjection.csproj"
+            },
+            "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Events.Extensions.Microsoft.DependencyInjection/LiteBus.Events.Extensions.Microsoft.DependencyInjection.csproj": {
+              "projectPath": "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Events.Extensions.Microsoft.DependencyInjection/LiteBus.Events.Extensions.Microsoft.DependencyInjection.csproj"
+            },
+            "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Messaging.Extensions.Microsoft.DependencyInjection/LiteBus.Messaging.Extensions.Microsoft.DependencyInjection.csproj": {
+              "projectPath": "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Messaging.Extensions.Microsoft.DependencyInjection/LiteBus.Messaging.Extensions.Microsoft.DependencyInjection.csproj"
+            },
+            "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Queries.Extensions.Microsoft.DependencyInjection/LiteBus.Queries.Extensions.Microsoft.DependencyInjection.csproj": {
+              "projectPath": "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Queries.Extensions.Microsoft.DependencyInjection/LiteBus.Queries.Extensions.Microsoft.DependencyInjection.csproj"
+            }
+          }
+        },
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "projectReferences": {
+            "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Commands.Extensions.Microsoft.DependencyInjection/LiteBus.Commands.Extensions.Microsoft.DependencyInjection.csproj": {
+              "projectPath": "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Commands.Extensions.Microsoft.DependencyInjection/LiteBus.Commands.Extensions.Microsoft.DependencyInjection.csproj"
+            },
+            "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Events.Extensions.Microsoft.DependencyInjection/LiteBus.Events.Extensions.Microsoft.DependencyInjection.csproj": {
+              "projectPath": "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Events.Extensions.Microsoft.DependencyInjection/LiteBus.Events.Extensions.Microsoft.DependencyInjection.csproj"
+            },
+            "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Messaging.Extensions.Microsoft.DependencyInjection/LiteBus.Messaging.Extensions.Microsoft.DependencyInjection.csproj": {
+              "projectPath": "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Messaging.Extensions.Microsoft.DependencyInjection/LiteBus.Messaging.Extensions.Microsoft.DependencyInjection.csproj"
+            },
+            "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Queries.Extensions.Microsoft.DependencyInjection/LiteBus.Queries.Extensions.Microsoft.DependencyInjection.csproj": {
+              "projectPath": "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Queries.Extensions.Microsoft.DependencyInjection/LiteBus.Queries.Extensions.Microsoft.DependencyInjection.csproj"
+            }
+          }
+        },
+        "net10.0": {
+          "targetAlias": "net10.0",
+          "projectReferences": {
+            "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Commands.Extensions.Microsoft.DependencyInjection/LiteBus.Commands.Extensions.Microsoft.DependencyInjection.csproj": {
+              "projectPath": "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Commands.Extensions.Microsoft.DependencyInjection/LiteBus.Commands.Extensions.Microsoft.DependencyInjection.csproj"
+            },
+            "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Events.Extensions.Microsoft.DependencyInjection/LiteBus.Events.Extensions.Microsoft.DependencyInjection.csproj": {
+              "projectPath": "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Events.Extensions.Microsoft.DependencyInjection/LiteBus.Events.Extensions.Microsoft.DependencyInjection.csproj"
+            },
+            "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Messaging.Extensions.Microsoft.DependencyInjection/LiteBus.Messaging.Extensions.Microsoft.DependencyInjection.csproj": {
+              "projectPath": "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Messaging.Extensions.Microsoft.DependencyInjection/LiteBus.Messaging.Extensions.Microsoft.DependencyInjection.csproj"
+            },
+            "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Queries.Extensions.Microsoft.DependencyInjection/LiteBus.Queries.Extensions.Microsoft.DependencyInjection.csproj": {
+              "projectPath": "/home/runner/work/LiteBus/LiteBus/src/LiteBus.Queries.Extensions.Microsoft.DependencyInjection/LiteBus.Queries.Extensions.Microsoft.DependencyInjection.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "all"
+      },
+      "SdkAnalysisLevel": "10.0.100"
+    },
+    "frameworks": {
+      "net8.0": {
+        "targetAlias": "net8.0",
+        "dependencies": {
+          "Microsoft.SourceLink.GitHub": {
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[10.0.102, )",
+            "versionCentrallyManaged": true
+          }
+        },
+        "centralPackageVersions": {
+          "Autofac": "9.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.2",
+          "Microsoft.Extensions.Hosting.Abstractions": "10.0.2",
+          "Microsoft.SourceLink.GitHub": "10.0.102"
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[8.0.23, 8.0.23]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[8.0.23, 8.0.23]"
+          }
+        ],
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.102/PortableRuntimeIdentifierGraph.json",
+        "packagesToPrune": {
+          "Microsoft.CSharp": "(,4.7.32767]",
+          "Microsoft.VisualBasic": "(,10.3.32767]",
+          "Microsoft.Win32.Primitives": "(,4.3.32767]",
+          "Microsoft.Win32.Registry": "(,5.0.32767]",
+          "runtime.any.System.Collections": "(,4.3.32767]",
+          "runtime.any.System.Diagnostics.Tools": "(,4.3.32767]",
+          "runtime.any.System.Diagnostics.Tracing": "(,4.3.32767]",
+          "runtime.any.System.Globalization": "(,4.3.32767]",
+          "runtime.any.System.Globalization.Calendars": "(,4.3.32767]",
+          "runtime.any.System.IO": "(,4.3.32767]",
+          "runtime.any.System.Reflection": "(,4.3.32767]",
+          "runtime.any.System.Reflection.Extensions": "(,4.3.32767]",
+          "runtime.any.System.Reflection.Primitives": "(,4.3.32767]",
+          "runtime.any.System.Resources.ResourceManager": "(,4.3.32767]",
+          "runtime.any.System.Runtime": "(,4.3.32767]",
+          "runtime.any.System.Runtime.Handles": "(,4.3.32767]",
+          "runtime.any.System.Runtime.InteropServices": "(,4.3.32767]",
+          "runtime.any.System.Text.Encoding": "(,4.3.32767]",
+          "runtime.any.System.Text.Encoding.Extensions": "(,4.3.32767]",
+          "runtime.any.System.Threading.Tasks": "(,4.3.32767]",
+          "runtime.any.System.Threading.Timer": "(,4.3.32767]",
+          "runtime.aot.System.Collections": "(,4.3.32767]",
+          "runtime.aot.System.Diagnostics.Tools": "(,4.3.32767]",
+          "runtime.aot.System.Diagnostics.Tracing": "(,4.3.32767]",
+          "runtime.aot.System.Globalization": "(,4.3.32767]",
+          "runtime.aot.System.Globalization.Calendars": "(,4.3.32767]",
+          "runtime.aot.System.IO": "(,4.3.32767]",
+          "runtime.aot.System.Reflection": "(,4.3.32767]",
+          "runtime.aot.System.Reflection.Extensions": "(,4.3.32767]",
+          "runtime.aot.System.Reflection.Primitives": "(,4.3.32767]",
+          "runtime.aot.System.Resources.ResourceManager": "(,4.3.32767]",
+          "runtime.aot.System.Runtime": "(,4.3.32767]",
+          "runtime.aot.System.Runtime.Handles": "(,4.3.32767]",
+          "runtime.aot.System.Runtime.InteropServices": "(,4.3.32767]",
+          "runtime.aot.System.Text.Encoding": "(,4.3.32767]",
+          "runtime.aot.System.Text.Encoding.Extensions": "(,4.3.32767]",
+          "runtime.aot.System.Threading.Tasks": "(,4.3.32767]",
+          "runtime.aot.System.Threading.Timer": "(,4.3.32767]",
+          "runtime.debian.8-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.debian.8-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.debian.8-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.debian.8-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.debian.8-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.debian.9-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.debian.9-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.debian.9-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.debian.9-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.debian.9-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.debian.9-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.fedora.23-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.fedora.23-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.fedora.23-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.fedora.23-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.fedora.23-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.fedora.23-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.fedora.24-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.fedora.24-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.fedora.24-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.fedora.24-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.fedora.24-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.fedora.24-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.fedora.27-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.fedora.27-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.fedora.27-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.fedora.27-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.fedora.27-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.fedora.27-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.fedora.28-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.fedora.28-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.fedora.28-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.fedora.28-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.fedora.28-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.fedora.28-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.native.System.Security.Cryptography.Apple": "(,4.3.32767]",
+          "runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.opensuse.13.2-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.opensuse.13.2-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.opensuse.13.2-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.opensuse.13.2-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.opensuse.13.2-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.opensuse.13.2-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.opensuse.42.1-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.opensuse.42.1-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.opensuse.42.1-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.opensuse.42.1-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.opensuse.42.1-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.opensuse.42.1-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.opensuse.42.3-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.opensuse.42.3-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.opensuse.42.3-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.opensuse.42.3-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.opensuse.42.3-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.opensuse.42.3-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.osx.10.10-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.osx.10.10-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.osx.10.10-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.osx.10.10-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.osx.10.10-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.osx.10.10-x64.runtime.native.System.Security.Cryptography.Apple": "(,4.3.32767]",
+          "runtime.osx.10.10-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.rhel.7-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.rhel.7-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.rhel.7-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.rhel.7-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.rhel.7-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.rhel.7-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.ubuntu.14.04-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.ubuntu.14.04-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.ubuntu.14.04-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.ubuntu.14.04-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.ubuntu.16.04-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.ubuntu.16.04-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.ubuntu.16.04-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.ubuntu.16.04-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.ubuntu.16.10-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.ubuntu.16.10-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.ubuntu.16.10-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.ubuntu.16.10-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.ubuntu.16.10-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.ubuntu.16.10-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.ubuntu.18.04-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.ubuntu.18.04-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.ubuntu.18.04-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.ubuntu.18.04-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.ubuntu.18.04-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.ubuntu.18.04-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.unix.Microsoft.Win32.Primitives": "(,4.3.32767]",
+          "runtime.unix.System.Console": "(,4.3.32767]",
+          "runtime.unix.System.Diagnostics.Debug": "(,4.3.32767]",
+          "runtime.unix.System.IO.FileSystem": "(,4.3.32767]",
+          "runtime.unix.System.Net.Primitives": "(,4.3.32767]",
+          "runtime.unix.System.Net.Sockets": "(,4.3.32767]",
+          "runtime.unix.System.Private.Uri": "(,4.3.32767]",
+          "runtime.unix.System.Runtime.Extensions": "(,4.3.32767]",
+          "runtime.win.Microsoft.Win32.Primitives": "(,4.3.32767]",
+          "runtime.win.System.Console": "(,4.3.32767]",
+          "runtime.win.System.Diagnostics.Debug": "(,4.3.32767]",
+          "runtime.win.System.IO.FileSystem": "(,4.3.32767]",
+          "runtime.win.System.Net.Primitives": "(,4.3.32767]",
+          "runtime.win.System.Net.Sockets": "(,4.3.32767]",
+          "runtime.win.System.Runtime.Extensions": "(,4.3.32767]",
+          "runtime.win10-arm-aot.runtime.native.System.IO.Compression": "(,4.0.32767]",
+          "runtime.win10-arm64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.win10-x64-aot.runtime.native.System.IO.Compression": "(,4.0.32767]",
+          "runtime.win10-x86-aot.runtime.native.System.IO.Compression": "(,4.0.32767]",
+          "runtime.win7-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.win7-x86.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.win7.System.Private.Uri": "(,4.3.32767]",
+          "runtime.win8-arm.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "System.AppContext": "(,4.3.32767]",
+          "System.Buffers": "(,4.6.32767]",
+          "System.Collections": "(,4.3.32767]",
+          "System.Collections.Concurrent": "(,4.3.32767]",
+          "System.Collections.Immutable": "(,8.0.32767]",
+          "System.Collections.NonGeneric": "(,4.3.32767]",
+          "System.Collections.Specialized": "(,4.3.32767]",
+          "System.ComponentModel": "(,4.3.32767]",
+          "System.ComponentModel.Annotations": "(,5.0.32767]",
+          "System.ComponentModel.EventBasedAsync": "(,4.3.32767]",
+          "System.ComponentModel.Primitives": "(,4.3.32767]",
+          "System.ComponentModel.TypeConverter": "(,4.3.32767]",
+          "System.Console": "(,4.3.32767]",
+          "System.Data.Common": "(,4.3.32767]",
+          "System.Data.DataSetExtensions": "(,4.5.32767]",
+          "System.Diagnostics.Contracts": "(,4.3.32767]",
+          "System.Diagnostics.Debug": "(,4.3.32767]",
+          "System.Diagnostics.DiagnosticSource": "(,8.0.32767]",
+          "System.Diagnostics.FileVersionInfo": "(,4.3.32767]",
+          "System.Diagnostics.Process": "(,4.3.32767]",
+          "System.Diagnostics.StackTrace": "(,4.3.32767]",
+          "System.Diagnostics.TextWriterTraceListener": "(,4.3.32767]",
+          "System.Diagnostics.Tools": "(,4.3.32767]",
+          "System.Diagnostics.TraceSource": "(,4.3.32767]",
+          "System.Diagnostics.Tracing": "(,4.3.32767]",
+          "System.Drawing.Primitives": "(,4.3.32767]",
+          "System.Dynamic.Runtime": "(,4.3.32767]",
+          "System.Formats.Asn1": "(,8.0.32767]",
+          "System.Globalization": "(,4.3.32767]",
+          "System.Globalization.Calendars": "(,4.3.32767]",
+          "System.Globalization.Extensions": "(,4.3.32767]",
+          "System.IO": "(,4.3.32767]",
+          "System.IO.Compression": "(,4.3.32767]",
+          "System.IO.Compression.ZipFile": "(,4.3.32767]",
+          "System.IO.FileSystem": "(,4.3.32767]",
+          "System.IO.FileSystem.AccessControl": "(,5.0.32767]",
+          "System.IO.FileSystem.DriveInfo": "(,4.3.32767]",
+          "System.IO.FileSystem.Primitives": "(,4.3.32767]",
+          "System.IO.FileSystem.Watcher": "(,4.3.32767]",
+          "System.IO.IsolatedStorage": "(,4.3.32767]",
+          "System.IO.MemoryMappedFiles": "(,4.3.32767]",
+          "System.IO.Pipes": "(,4.3.32767]",
+          "System.IO.Pipes.AccessControl": "(,4.6.32767]",
+          "System.IO.UnmanagedMemoryStream": "(,4.3.32767]",
+          "System.Linq": "(,4.3.32767]",
+          "System.Linq.Expressions": "(,4.3.32767]",
+          "System.Linq.Parallel": "(,4.3.32767]",
+          "System.Linq.Queryable": "(,4.3.32767]",
+          "System.Memory": "(,4.6.32767]",
+          "System.Net.Http": "(,4.3.32767]",
+          "System.Net.Http.Json": "(,8.0.32767]",
+          "System.Net.NameResolution": "(,4.3.32767]",
+          "System.Net.NetworkInformation": "(,4.3.32767]",
+          "System.Net.Ping": "(,4.3.32767]",
+          "System.Net.Primitives": "(,4.3.32767]",
+          "System.Net.Requests": "(,4.3.32767]",
+          "System.Net.Security": "(,4.3.32767]",
+          "System.Net.Sockets": "(,4.3.32767]",
+          "System.Net.WebHeaderCollection": "(,4.3.32767]",
+          "System.Net.WebSockets": "(,4.3.32767]",
+          "System.Net.WebSockets.Client": "(,4.3.32767]",
+          "System.Numerics.Vectors": "(,4.6.32767]",
+          "System.ObjectModel": "(,4.3.32767]",
+          "System.Private.DataContractSerialization": "(,4.3.32767]",
+          "System.Private.Uri": "(,4.3.32767]",
+          "System.Reflection": "(,4.3.32767]",
+          "System.Reflection.DispatchProxy": "(,4.8.32767]",
+          "System.Reflection.Emit": "(,4.7.32767]",
+          "System.Reflection.Emit.ILGeneration": "(,4.7.32767]",
+          "System.Reflection.Emit.Lightweight": "(,4.7.32767]",
+          "System.Reflection.Extensions": "(,4.3.32767]",
+          "System.Reflection.Metadata": "(,8.0.32767]",
+          "System.Reflection.Primitives": "(,4.3.32767]",
+          "System.Reflection.TypeExtensions": "(,4.7.32767]",
+          "System.Resources.Reader": "(,4.3.32767]",
+          "System.Resources.ResourceManager": "(,4.3.32767]",
+          "System.Resources.Writer": "(,4.3.32767]",
+          "System.Runtime": "(,4.3.32767]",
+          "System.Runtime.CompilerServices.Unsafe": "(,6.1.32767]",
+          "System.Runtime.CompilerServices.VisualC": "(,4.3.32767]",
+          "System.Runtime.Extensions": "(,4.3.32767]",
+          "System.Runtime.Handles": "(,4.3.32767]",
+          "System.Runtime.InteropServices": "(,4.3.32767]",
+          "System.Runtime.InteropServices.RuntimeInformation": "(,4.3.32767]",
+          "System.Runtime.Loader": "(,4.3.32767]",
+          "System.Runtime.Numerics": "(,4.3.32767]",
+          "System.Runtime.Serialization.Formatters": "(,4.3.32767]",
+          "System.Runtime.Serialization.Json": "(,4.3.32767]",
+          "System.Runtime.Serialization.Primitives": "(,4.3.32767]",
+          "System.Runtime.Serialization.Xml": "(,4.3.32767]",
+          "System.Security.AccessControl": "(,6.0.32767]",
+          "System.Security.Claims": "(,4.3.32767]",
+          "System.Security.Cryptography.Algorithms": "(,4.3.32767]",
+          "System.Security.Cryptography.Cng": "(,4.6.32767]",
+          "System.Security.Cryptography.Csp": "(,4.3.32767]",
+          "System.Security.Cryptography.Encoding": "(,4.3.32767]",
+          "System.Security.Cryptography.OpenSsl": "(,5.0.32767]",
+          "System.Security.Cryptography.Primitives": "(,4.3.32767]",
+          "System.Security.Cryptography.X509Certificates": "(,4.3.32767]",
+          "System.Security.Principal": "(,4.3.32767]",
+          "System.Security.Principal.Windows": "(,5.0.32767]",
+          "System.Security.SecureString": "(,4.3.32767]",
+          "System.Text.Encoding": "(,4.3.32767]",
+          "System.Text.Encoding.CodePages": "(,8.0.32767]",
+          "System.Text.Encoding.Extensions": "(,4.3.32767]",
+          "System.Text.Encodings.Web": "(,8.0.32767]",
+          "System.Text.Json": "(,8.0.32767]",
+          "System.Text.RegularExpressions": "(,4.3.32767]",
+          "System.Threading": "(,4.3.32767]",
+          "System.Threading.Channels": "(,8.0.32767]",
+          "System.Threading.Overlapped": "(,4.3.32767]",
+          "System.Threading.Tasks": "(,4.3.32767]",
+          "System.Threading.Tasks.Dataflow": "(,8.0.32767]",
+          "System.Threading.Tasks.Extensions": "(,4.6.32767]",
+          "System.Threading.Tasks.Parallel": "(,4.3.32767]",
+          "System.Threading.Thread": "(,4.3.32767]",
+          "System.Threading.ThreadPool": "(,4.3.32767]",
+          "System.Threading.Timer": "(,4.3.32767]",
+          "System.ValueTuple": "(,4.6.32767]",
+          "System.Xml.ReaderWriter": "(,4.3.32767]",
+          "System.Xml.XDocument": "(,4.3.32767]",
+          "System.Xml.XmlDocument": "(,4.3.32767]",
+          "System.Xml.XmlSerializer": "(,4.3.32767]",
+          "System.Xml.XPath": "(,4.3.32767]",
+          "System.Xml.XPath.XDocument": "(,4.3.32767]"
+        }
+      },
+      "net9.0": {
+        "targetAlias": "net9.0",
+        "dependencies": {
+          "Microsoft.SourceLink.GitHub": {
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[10.0.102, )",
+            "versionCentrallyManaged": true
+          }
+        },
+        "centralPackageVersions": {
+          "Autofac": "9.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.2",
+          "Microsoft.Extensions.Hosting.Abstractions": "10.0.2",
+          "Microsoft.SourceLink.GitHub": "10.0.102"
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[9.0.12, 9.0.12]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[9.0.12, 9.0.12]"
+          }
+        ],
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.102/PortableRuntimeIdentifierGraph.json",
+        "packagesToPrune": {
+          "Microsoft.CSharp": "(,4.7.32767]",
+          "Microsoft.VisualBasic": "(,10.4.32767]",
+          "Microsoft.Win32.Primitives": "(,4.3.32767]",
+          "Microsoft.Win32.Registry": "(,5.0.32767]",
+          "runtime.any.System.Collections": "(,4.3.32767]",
+          "runtime.any.System.Diagnostics.Tools": "(,4.3.32767]",
+          "runtime.any.System.Diagnostics.Tracing": "(,4.3.32767]",
+          "runtime.any.System.Globalization": "(,4.3.32767]",
+          "runtime.any.System.Globalization.Calendars": "(,4.3.32767]",
+          "runtime.any.System.IO": "(,4.3.32767]",
+          "runtime.any.System.Reflection": "(,4.3.32767]",
+          "runtime.any.System.Reflection.Extensions": "(,4.3.32767]",
+          "runtime.any.System.Reflection.Primitives": "(,4.3.32767]",
+          "runtime.any.System.Resources.ResourceManager": "(,4.3.32767]",
+          "runtime.any.System.Runtime": "(,4.3.32767]",
+          "runtime.any.System.Runtime.Handles": "(,4.3.32767]",
+          "runtime.any.System.Runtime.InteropServices": "(,4.3.32767]",
+          "runtime.any.System.Text.Encoding": "(,4.3.32767]",
+          "runtime.any.System.Text.Encoding.Extensions": "(,4.3.32767]",
+          "runtime.any.System.Threading.Tasks": "(,4.3.32767]",
+          "runtime.any.System.Threading.Timer": "(,4.3.32767]",
+          "runtime.aot.System.Collections": "(,4.3.32767]",
+          "runtime.aot.System.Diagnostics.Tools": "(,4.3.32767]",
+          "runtime.aot.System.Diagnostics.Tracing": "(,4.3.32767]",
+          "runtime.aot.System.Globalization": "(,4.3.32767]",
+          "runtime.aot.System.Globalization.Calendars": "(,4.3.32767]",
+          "runtime.aot.System.IO": "(,4.3.32767]",
+          "runtime.aot.System.Reflection": "(,4.3.32767]",
+          "runtime.aot.System.Reflection.Extensions": "(,4.3.32767]",
+          "runtime.aot.System.Reflection.Primitives": "(,4.3.32767]",
+          "runtime.aot.System.Resources.ResourceManager": "(,4.3.32767]",
+          "runtime.aot.System.Runtime": "(,4.3.32767]",
+          "runtime.aot.System.Runtime.Handles": "(,4.3.32767]",
+          "runtime.aot.System.Runtime.InteropServices": "(,4.3.32767]",
+          "runtime.aot.System.Text.Encoding": "(,4.3.32767]",
+          "runtime.aot.System.Text.Encoding.Extensions": "(,4.3.32767]",
+          "runtime.aot.System.Threading.Tasks": "(,4.3.32767]",
+          "runtime.aot.System.Threading.Timer": "(,4.3.32767]",
+          "runtime.debian.8-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.debian.8-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.debian.8-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.debian.8-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.debian.8-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.debian.9-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.debian.9-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.debian.9-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.debian.9-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.debian.9-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.debian.9-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.fedora.23-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.fedora.23-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.fedora.23-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.fedora.23-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.fedora.23-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.fedora.23-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.fedora.24-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.fedora.24-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.fedora.24-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.fedora.24-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.fedora.24-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.fedora.24-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.fedora.27-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.fedora.27-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.fedora.27-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.fedora.27-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.fedora.27-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.fedora.27-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.fedora.28-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.fedora.28-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.fedora.28-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.fedora.28-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.fedora.28-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.fedora.28-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.native.System.Security.Cryptography.Apple": "(,4.3.32767]",
+          "runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.opensuse.13.2-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.opensuse.13.2-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.opensuse.13.2-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.opensuse.13.2-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.opensuse.13.2-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.opensuse.13.2-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.opensuse.42.1-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.opensuse.42.1-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.opensuse.42.1-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.opensuse.42.1-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.opensuse.42.1-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.opensuse.42.1-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.opensuse.42.3-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.opensuse.42.3-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.opensuse.42.3-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.opensuse.42.3-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.opensuse.42.3-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.opensuse.42.3-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.osx.10.10-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.osx.10.10-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.osx.10.10-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.osx.10.10-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.osx.10.10-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.osx.10.10-x64.runtime.native.System.Security.Cryptography.Apple": "(,4.3.32767]",
+          "runtime.osx.10.10-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.rhel.7-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.rhel.7-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.rhel.7-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.rhel.7-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.rhel.7-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.rhel.7-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.ubuntu.14.04-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.ubuntu.14.04-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.ubuntu.14.04-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.ubuntu.14.04-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.ubuntu.16.04-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.ubuntu.16.04-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.ubuntu.16.04-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.ubuntu.16.04-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.ubuntu.16.10-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.ubuntu.16.10-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.ubuntu.16.10-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.ubuntu.16.10-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.ubuntu.16.10-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.ubuntu.16.10-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.ubuntu.18.04-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.ubuntu.18.04-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.ubuntu.18.04-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.ubuntu.18.04-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.ubuntu.18.04-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.ubuntu.18.04-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.unix.Microsoft.Win32.Primitives": "(,4.3.32767]",
+          "runtime.unix.System.Console": "(,4.3.32767]",
+          "runtime.unix.System.Diagnostics.Debug": "(,4.3.32767]",
+          "runtime.unix.System.IO.FileSystem": "(,4.3.32767]",
+          "runtime.unix.System.Net.Primitives": "(,4.3.32767]",
+          "runtime.unix.System.Net.Sockets": "(,4.3.32767]",
+          "runtime.unix.System.Private.Uri": "(,4.3.32767]",
+          "runtime.unix.System.Runtime.Extensions": "(,4.3.32767]",
+          "runtime.win.Microsoft.Win32.Primitives": "(,4.3.32767]",
+          "runtime.win.System.Console": "(,4.3.32767]",
+          "runtime.win.System.Diagnostics.Debug": "(,4.3.32767]",
+          "runtime.win.System.IO.FileSystem": "(,4.3.32767]",
+          "runtime.win.System.Net.Primitives": "(,4.3.32767]",
+          "runtime.win.System.Net.Sockets": "(,4.3.32767]",
+          "runtime.win.System.Runtime.Extensions": "(,4.3.32767]",
+          "runtime.win10-arm-aot.runtime.native.System.IO.Compression": "(,4.0.32767]",
+          "runtime.win10-arm64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.win10-x64-aot.runtime.native.System.IO.Compression": "(,4.0.32767]",
+          "runtime.win10-x86-aot.runtime.native.System.IO.Compression": "(,4.0.32767]",
+          "runtime.win7-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.win7-x86.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.win7.System.Private.Uri": "(,4.3.32767]",
+          "runtime.win8-arm.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "System.AppContext": "(,4.3.32767]",
+          "System.Buffers": "(,5.0.32767]",
+          "System.Collections": "(,4.3.32767]",
+          "System.Collections.Concurrent": "(,4.3.32767]",
+          "System.Collections.Immutable": "(,9.0.32767]",
+          "System.Collections.NonGeneric": "(,4.3.32767]",
+          "System.Collections.Specialized": "(,4.3.32767]",
+          "System.ComponentModel": "(,4.3.32767]",
+          "System.ComponentModel.Annotations": "(,5.0.32767]",
+          "System.ComponentModel.EventBasedAsync": "(,4.3.32767]",
+          "System.ComponentModel.Primitives": "(,4.3.32767]",
+          "System.ComponentModel.TypeConverter": "(,4.3.32767]",
+          "System.Console": "(,4.3.32767]",
+          "System.Data.Common": "(,4.3.32767]",
+          "System.Data.DataSetExtensions": "(,4.5.32767]",
+          "System.Diagnostics.Contracts": "(,4.3.32767]",
+          "System.Diagnostics.Debug": "(,4.3.32767]",
+          "System.Diagnostics.DiagnosticSource": "(,9.0.32767]",
+          "System.Diagnostics.FileVersionInfo": "(,4.3.32767]",
+          "System.Diagnostics.Process": "(,4.3.32767]",
+          "System.Diagnostics.StackTrace": "(,4.3.32767]",
+          "System.Diagnostics.TextWriterTraceListener": "(,4.3.32767]",
+          "System.Diagnostics.Tools": "(,4.3.32767]",
+          "System.Diagnostics.TraceSource": "(,4.3.32767]",
+          "System.Diagnostics.Tracing": "(,4.3.32767]",
+          "System.Drawing.Primitives": "(,4.3.32767]",
+          "System.Dynamic.Runtime": "(,4.3.32767]",
+          "System.Formats.Asn1": "(,9.0.32767]",
+          "System.Formats.Tar": "(,9.0.32767]",
+          "System.Globalization": "(,4.3.32767]",
+          "System.Globalization.Calendars": "(,4.3.32767]",
+          "System.Globalization.Extensions": "(,4.3.32767]",
+          "System.IO": "(,4.3.32767]",
+          "System.IO.Compression": "(,4.3.32767]",
+          "System.IO.Compression.ZipFile": "(,4.3.32767]",
+          "System.IO.FileSystem": "(,4.3.32767]",
+          "System.IO.FileSystem.AccessControl": "(,5.0.32767]",
+          "System.IO.FileSystem.DriveInfo": "(,4.3.32767]",
+          "System.IO.FileSystem.Primitives": "(,4.3.32767]",
+          "System.IO.FileSystem.Watcher": "(,4.3.32767]",
+          "System.IO.IsolatedStorage": "(,4.3.32767]",
+          "System.IO.MemoryMappedFiles": "(,4.3.32767]",
+          "System.IO.Pipelines": "(,9.0.32767]",
+          "System.IO.Pipes": "(,4.3.32767]",
+          "System.IO.Pipes.AccessControl": "(,4.6.32767]",
+          "System.IO.UnmanagedMemoryStream": "(,4.3.32767]",
+          "System.Linq": "(,4.3.32767]",
+          "System.Linq.Expressions": "(,4.3.32767]",
+          "System.Linq.Parallel": "(,4.3.32767]",
+          "System.Linq.Queryable": "(,4.3.32767]",
+          "System.Memory": "(,5.0.32767]",
+          "System.Net.Http": "(,4.3.32767]",
+          "System.Net.Http.Json": "(,9.0.32767]",
+          "System.Net.NameResolution": "(,4.3.32767]",
+          "System.Net.NetworkInformation": "(,4.3.32767]",
+          "System.Net.Ping": "(,4.3.32767]",
+          "System.Net.Primitives": "(,4.3.32767]",
+          "System.Net.Requests": "(,4.3.32767]",
+          "System.Net.Security": "(,4.3.32767]",
+          "System.Net.Sockets": "(,4.3.32767]",
+          "System.Net.WebHeaderCollection": "(,4.3.32767]",
+          "System.Net.WebSockets": "(,4.3.32767]",
+          "System.Net.WebSockets.Client": "(,4.3.32767]",
+          "System.Numerics.Vectors": "(,5.0.32767]",
+          "System.ObjectModel": "(,4.3.32767]",
+          "System.Private.DataContractSerialization": "(,4.3.32767]",
+          "System.Private.Uri": "(,4.3.32767]",
+          "System.Reflection": "(,4.3.32767]",
+          "System.Reflection.DispatchProxy": "(,6.0.32767]",
+          "System.Reflection.Emit": "(,4.7.32767]",
+          "System.Reflection.Emit.ILGeneration": "(,4.7.32767]",
+          "System.Reflection.Emit.Lightweight": "(,4.7.32767]",
+          "System.Reflection.Extensions": "(,4.3.32767]",
+          "System.Reflection.Metadata": "(,9.0.32767]",
+          "System.Reflection.Primitives": "(,4.3.32767]",
+          "System.Reflection.TypeExtensions": "(,4.7.32767]",
+          "System.Resources.Reader": "(,4.3.32767]",
+          "System.Resources.ResourceManager": "(,4.3.32767]",
+          "System.Resources.Writer": "(,4.3.32767]",
+          "System.Runtime": "(,4.3.32767]",
+          "System.Runtime.CompilerServices.Unsafe": "(,7.0.32767]",
+          "System.Runtime.CompilerServices.VisualC": "(,4.3.32767]",
+          "System.Runtime.Extensions": "(,4.3.32767]",
+          "System.Runtime.Handles": "(,4.3.32767]",
+          "System.Runtime.InteropServices": "(,4.3.32767]",
+          "System.Runtime.InteropServices.RuntimeInformation": "(,4.3.32767]",
+          "System.Runtime.Loader": "(,4.3.32767]",
+          "System.Runtime.Numerics": "(,4.3.32767]",
+          "System.Runtime.Serialization.Formatters": "(,4.3.32767]",
+          "System.Runtime.Serialization.Json": "(,4.3.32767]",
+          "System.Runtime.Serialization.Primitives": "(,4.3.32767]",
+          "System.Runtime.Serialization.Xml": "(,4.3.32767]",
+          "System.Security.AccessControl": "(,6.0.32767]",
+          "System.Security.Claims": "(,4.3.32767]",
+          "System.Security.Cryptography.Algorithms": "(,4.3.32767]",
+          "System.Security.Cryptography.Cng": "(,4.6.32767]",
+          "System.Security.Cryptography.Csp": "(,4.3.32767]",
+          "System.Security.Cryptography.Encoding": "(,4.3.32767]",
+          "System.Security.Cryptography.OpenSsl": "(,5.0.32767]",
+          "System.Security.Cryptography.Primitives": "(,4.3.32767]",
+          "System.Security.Cryptography.X509Certificates": "(,4.3.32767]",
+          "System.Security.Principal": "(,4.3.32767]",
+          "System.Security.Principal.Windows": "(,5.0.32767]",
+          "System.Security.SecureString": "(,4.3.32767]",
+          "System.Text.Encoding": "(,4.3.32767]",
+          "System.Text.Encoding.CodePages": "(,9.0.32767]",
+          "System.Text.Encoding.Extensions": "(,4.3.32767]",
+          "System.Text.Encodings.Web": "(,9.0.32767]",
+          "System.Text.Json": "(,9.0.32767]",
+          "System.Text.RegularExpressions": "(,4.3.32767]",
+          "System.Threading": "(,4.3.32767]",
+          "System.Threading.Channels": "(,9.0.32767]",
+          "System.Threading.Overlapped": "(,4.3.32767]",
+          "System.Threading.Tasks": "(,4.3.32767]",
+          "System.Threading.Tasks.Dataflow": "(,9.0.32767]",
+          "System.Threading.Tasks.Extensions": "(,5.0.32767]",
+          "System.Threading.Tasks.Parallel": "(,4.3.32767]",
+          "System.Threading.Thread": "(,4.3.32767]",
+          "System.Threading.ThreadPool": "(,4.3.32767]",
+          "System.Threading.Timer": "(,4.3.32767]",
+          "System.ValueTuple": "(,4.6.32767]",
+          "System.Xml.ReaderWriter": "(,4.3.32767]",
+          "System.Xml.XDocument": "(,4.3.32767]",
+          "System.Xml.XmlDocument": "(,4.3.32767]",
+          "System.Xml.XmlSerializer": "(,4.3.32767]",
+          "System.Xml.XPath": "(,4.3.32767]",
+          "System.Xml.XPath.XDocument": "(,5.0.32767]"
+        }
+      },
+      "net10.0": {
+        "targetAlias": "net10.0",
+        "dependencies": {
+          "Microsoft.SourceLink.GitHub": {
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[10.0.102, )",
+            "versionCentrallyManaged": true
+          }
+        },
+        "centralPackageVersions": {
+          "Autofac": "9.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.2",
+          "Microsoft.Extensions.Hosting.Abstractions": "10.0.2",
+          "Microsoft.SourceLink.GitHub": "10.0.102"
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.102/PortableRuntimeIdentifierGraph.json",
+        "packagesToPrune": {
+          "Microsoft.CSharp": "(,4.7.32767]",
+          "Microsoft.VisualBasic": "(,10.4.32767]",
+          "Microsoft.Win32.Primitives": "(,4.3.32767]",
+          "Microsoft.Win32.Registry": "(,5.0.32767]",
+          "runtime.any.System.Collections": "(,4.3.32767]",
+          "runtime.any.System.Diagnostics.Tools": "(,4.3.32767]",
+          "runtime.any.System.Diagnostics.Tracing": "(,4.3.32767]",
+          "runtime.any.System.Globalization": "(,4.3.32767]",
+          "runtime.any.System.Globalization.Calendars": "(,4.3.32767]",
+          "runtime.any.System.IO": "(,4.3.32767]",
+          "runtime.any.System.Reflection": "(,4.3.32767]",
+          "runtime.any.System.Reflection.Extensions": "(,4.3.32767]",
+          "runtime.any.System.Reflection.Primitives": "(,4.3.32767]",
+          "runtime.any.System.Resources.ResourceManager": "(,4.3.32767]",
+          "runtime.any.System.Runtime": "(,4.3.32767]",
+          "runtime.any.System.Runtime.Handles": "(,4.3.32767]",
+          "runtime.any.System.Runtime.InteropServices": "(,4.3.32767]",
+          "runtime.any.System.Text.Encoding": "(,4.3.32767]",
+          "runtime.any.System.Text.Encoding.Extensions": "(,4.3.32767]",
+          "runtime.any.System.Threading.Tasks": "(,4.3.32767]",
+          "runtime.any.System.Threading.Timer": "(,4.3.32767]",
+          "runtime.aot.System.Collections": "(,4.3.32767]",
+          "runtime.aot.System.Diagnostics.Tools": "(,4.3.32767]",
+          "runtime.aot.System.Diagnostics.Tracing": "(,4.3.32767]",
+          "runtime.aot.System.Globalization": "(,4.3.32767]",
+          "runtime.aot.System.Globalization.Calendars": "(,4.3.32767]",
+          "runtime.aot.System.IO": "(,4.3.32767]",
+          "runtime.aot.System.Reflection": "(,4.3.32767]",
+          "runtime.aot.System.Reflection.Extensions": "(,4.3.32767]",
+          "runtime.aot.System.Reflection.Primitives": "(,4.3.32767]",
+          "runtime.aot.System.Resources.ResourceManager": "(,4.3.32767]",
+          "runtime.aot.System.Runtime": "(,4.3.32767]",
+          "runtime.aot.System.Runtime.Handles": "(,4.3.32767]",
+          "runtime.aot.System.Runtime.InteropServices": "(,4.3.32767]",
+          "runtime.aot.System.Text.Encoding": "(,4.3.32767]",
+          "runtime.aot.System.Text.Encoding.Extensions": "(,4.3.32767]",
+          "runtime.aot.System.Threading.Tasks": "(,4.3.32767]",
+          "runtime.aot.System.Threading.Timer": "(,4.3.32767]",
+          "runtime.debian.8-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.debian.8-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.debian.8-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.debian.8-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.debian.8-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.debian.9-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.debian.9-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.debian.9-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.debian.9-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.fedora.23-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.fedora.23-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.fedora.23-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.fedora.23-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.fedora.23-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.fedora.23-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.fedora.24-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.fedora.24-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.fedora.24-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.fedora.24-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.fedora.24-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.fedora.24-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.fedora.27-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.fedora.27-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.fedora.27-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.fedora.27-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.fedora.28-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.fedora.28-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.fedora.28-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.fedora.28-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.opensuse.13.2-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.opensuse.13.2-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.opensuse.13.2-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.opensuse.13.2-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.opensuse.13.2-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.opensuse.13.2-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.opensuse.42.1-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.opensuse.42.1-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.opensuse.42.1-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.opensuse.42.1-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.opensuse.42.1-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.opensuse.42.1-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.opensuse.42.3-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.opensuse.42.3-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.opensuse.42.3-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.opensuse.42.3-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.osx.10.10-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.osx.10.10-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.osx.10.10-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.osx.10.10-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.osx.10.10-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.osx.10.10-x64.runtime.native.System.Security.Cryptography.Apple": "(,4.3.32767]",
+          "runtime.osx.10.10-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.rhel.7-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.rhel.7-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.rhel.7-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.rhel.7-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.rhel.7-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.rhel.7-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.ubuntu.14.04-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.ubuntu.14.04-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.ubuntu.14.04-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.ubuntu.14.04-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.ubuntu.16.04-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.ubuntu.16.04-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.ubuntu.16.04-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.ubuntu.16.04-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.ubuntu.16.10-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.ubuntu.16.10-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.ubuntu.16.10-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.ubuntu.16.10-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.ubuntu.16.10-x64.runtime.native.System.Security.Cryptography": "(,4.3.32767]",
+          "runtime.ubuntu.16.10-x64.runtime.native.System.Security.Cryptography.OpenSsl": "(,4.3.32767]",
+          "runtime.ubuntu.18.04-x64.runtime.native.System": "(,4.3.32767]",
+          "runtime.ubuntu.18.04-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.ubuntu.18.04-x64.runtime.native.System.Net.Http": "(,4.3.32767]",
+          "runtime.ubuntu.18.04-x64.runtime.native.System.Net.Security": "(,4.3.32767]",
+          "runtime.unix.Microsoft.Win32.Primitives": "(,4.3.32767]",
+          "runtime.unix.System.Console": "(,4.3.32767]",
+          "runtime.unix.System.Diagnostics.Debug": "(,4.3.32767]",
+          "runtime.unix.System.IO.FileSystem": "(,4.3.32767]",
+          "runtime.unix.System.Net.Primitives": "(,4.3.32767]",
+          "runtime.unix.System.Net.Sockets": "(,4.3.32767]",
+          "runtime.unix.System.Private.Uri": "(,4.3.32767]",
+          "runtime.unix.System.Runtime.Extensions": "(,4.3.32767]",
+          "runtime.win.Microsoft.Win32.Primitives": "(,4.3.32767]",
+          "runtime.win.System.Console": "(,4.3.32767]",
+          "runtime.win.System.Diagnostics.Debug": "(,4.3.32767]",
+          "runtime.win.System.IO.FileSystem": "(,4.3.32767]",
+          "runtime.win.System.Net.Primitives": "(,4.3.32767]",
+          "runtime.win.System.Net.Sockets": "(,4.3.32767]",
+          "runtime.win.System.Runtime.Extensions": "(,4.3.32767]",
+          "runtime.win10-arm-aot.runtime.native.System.IO.Compression": "(,4.0.32767]",
+          "runtime.win10-arm64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.win10-x64-aot.runtime.native.System.IO.Compression": "(,4.0.32767]",
+          "runtime.win10-x86-aot.runtime.native.System.IO.Compression": "(,4.0.32767]",
+          "runtime.win7-x64.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.win7-x86.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "runtime.win7.System.Private.Uri": "(,4.3.32767]",
+          "runtime.win8-arm.runtime.native.System.IO.Compression": "(,4.3.32767]",
+          "System.AppContext": "(,4.3.32767]",
+          "System.Buffers": "(,5.0.32767]",
+          "System.Collections": "(,4.3.32767]",
+          "System.Collections.Concurrent": "(,4.3.32767]",
+          "System.Collections.Immutable": "(,10.0.32767]",
+          "System.Collections.NonGeneric": "(,4.3.32767]",
+          "System.Collections.Specialized": "(,4.3.32767]",
+          "System.ComponentModel": "(,4.3.32767]",
+          "System.ComponentModel.Annotations": "(,4.3.32767]",
+          "System.ComponentModel.EventBasedAsync": "(,4.3.32767]",
+          "System.ComponentModel.Primitives": "(,4.3.32767]",
+          "System.ComponentModel.TypeConverter": "(,4.3.32767]",
+          "System.Console": "(,4.3.32767]",
+          "System.Data.Common": "(,4.3.32767]",
+          "System.Data.DataSetExtensions": "(,4.4.32767]",
+          "System.Diagnostics.Contracts": "(,4.3.32767]",
+          "System.Diagnostics.Debug": "(,4.3.32767]",
+          "System.Diagnostics.DiagnosticSource": "(,10.0.32767]",
+          "System.Diagnostics.FileVersionInfo": "(,4.3.32767]",
+          "System.Diagnostics.Process": "(,4.3.32767]",
+          "System.Diagnostics.StackTrace": "(,4.3.32767]",
+          "System.Diagnostics.TextWriterTraceListener": "(,4.3.32767]",
+          "System.Diagnostics.Tools": "(,4.3.32767]",
+          "System.Diagnostics.TraceSource": "(,4.3.32767]",
+          "System.Diagnostics.Tracing": "(,4.3.32767]",
+          "System.Drawing.Primitives": "(,4.3.32767]",
+          "System.Dynamic.Runtime": "(,4.3.32767]",
+          "System.Formats.Asn1": "(,10.0.32767]",
+          "System.Formats.Tar": "(,10.0.32767]",
+          "System.Globalization": "(,4.3.32767]",
+          "System.Globalization.Calendars": "(,4.3.32767]",
+          "System.Globalization.Extensions": "(,4.3.32767]",
+          "System.IO": "(,4.3.32767]",
+          "System.IO.Compression": "(,4.3.32767]",
+          "System.IO.Compression.ZipFile": "(,4.3.32767]",
+          "System.IO.FileSystem": "(,4.3.32767]",
+          "System.IO.FileSystem.AccessControl": "(,4.4.32767]",
+          "System.IO.FileSystem.DriveInfo": "(,4.3.32767]",
+          "System.IO.FileSystem.Primitives": "(,4.3.32767]",
+          "System.IO.FileSystem.Watcher": "(,4.3.32767]",
+          "System.IO.IsolatedStorage": "(,4.3.32767]",
+          "System.IO.MemoryMappedFiles": "(,4.3.32767]",
+          "System.IO.Pipelines": "(,10.0.32767]",
+          "System.IO.Pipes": "(,4.3.32767]",
+          "System.IO.Pipes.AccessControl": "(,5.0.32767]",
+          "System.IO.UnmanagedMemoryStream": "(,4.3.32767]",
+          "System.Linq": "(,4.3.32767]",
+          "System.Linq.AsyncEnumerable": "(,10.0.32767]",
+          "System.Linq.Expressions": "(,4.3.32767]",
+          "System.Linq.Parallel": "(,4.3.32767]",
+          "System.Linq.Queryable": "(,4.3.32767]",
+          "System.Memory": "(,5.0.32767]",
+          "System.Net.Http": "(,4.3.32767]",
+          "System.Net.Http.Json": "(,10.0.32767]",
+          "System.Net.NameResolution": "(,4.3.32767]",
+          "System.Net.NetworkInformation": "(,4.3.32767]",
+          "System.Net.Ping": "(,4.3.32767]",
+          "System.Net.Primitives": "(,4.3.32767]",
+          "System.Net.Requests": "(,4.3.32767]",
+          "System.Net.Security": "(,4.3.32767]",
+          "System.Net.ServerSentEvents": "(,10.0.32767]",
+          "System.Net.Sockets": "(,4.3.32767]",
+          "System.Net.WebHeaderCollection": "(,4.3.32767]",
+          "System.Net.WebSockets": "(,4.3.32767]",
+          "System.Net.WebSockets.Client": "(,4.3.32767]",
+          "System.Numerics.Vectors": "(,5.0.32767]",
+          "System.ObjectModel": "(,4.3.32767]",
+          "System.Private.DataContractSerialization": "(,4.3.32767]",
+          "System.Private.Uri": "(,4.3.32767]",
+          "System.Reflection": "(,4.3.32767]",
+          "System.Reflection.DispatchProxy": "(,6.0.32767]",
+          "System.Reflection.Emit": "(,4.7.32767]",
+          "System.Reflection.Emit.ILGeneration": "(,4.7.32767]",
+          "System.Reflection.Emit.Lightweight": "(,4.7.32767]",
+          "System.Reflection.Extensions": "(,4.3.32767]",
+          "System.Reflection.Metadata": "(,10.0.32767]",
+          "System.Reflection.Primitives": "(,4.3.32767]",
+          "System.Reflection.TypeExtensions": "(,4.3.32767]",
+          "System.Resources.Reader": "(,4.3.32767]",
+          "System.Resources.ResourceManager": "(,4.3.32767]",
+          "System.Resources.Writer": "(,4.3.32767]",
+          "System.Runtime": "(,4.3.32767]",
+          "System.Runtime.CompilerServices.Unsafe": "(,7.0.32767]",
+          "System.Runtime.CompilerServices.VisualC": "(,4.3.32767]",
+          "System.Runtime.Extensions": "(,4.3.32767]",
+          "System.Runtime.Handles": "(,4.3.32767]",
+          "System.Runtime.InteropServices": "(,4.3.32767]",
+          "System.Runtime.InteropServices.RuntimeInformation": "(,4.3.32767]",
+          "System.Runtime.Loader": "(,4.3.32767]",
+          "System.Runtime.Numerics": "(,4.3.32767]",
+          "System.Runtime.Serialization.Formatters": "(,4.3.32767]",
+          "System.Runtime.Serialization.Json": "(,4.3.32767]",
+          "System.Runtime.Serialization.Primitives": "(,4.3.32767]",
+          "System.Runtime.Serialization.Xml": "(,4.3.32767]",
+          "System.Security.AccessControl": "(,6.0.32767]",
+          "System.Security.Claims": "(,4.3.32767]",
+          "System.Security.Cryptography.Algorithms": "(,4.3.32767]",
+          "System.Security.Cryptography.Cng": "(,5.0.32767]",
+          "System.Security.Cryptography.Csp": "(,4.3.32767]",
+          "System.Security.Cryptography.Encoding": "(,4.3.32767]",
+          "System.Security.Cryptography.OpenSsl": "(,5.0.32767]",
+          "System.Security.Cryptography.Primitives": "(,4.3.32767]",
+          "System.Security.Cryptography.X509Certificates": "(,4.3.32767]",
+          "System.Security.Principal": "(,4.3.32767]",
+          "System.Security.Principal.Windows": "(,5.0.32767]",
+          "System.Security.SecureString": "(,4.3.32767]",
+          "System.Text.Encoding": "(,4.3.32767]",
+          "System.Text.Encoding.CodePages": "(,10.0.32767]",
+          "System.Text.Encoding.Extensions": "(,4.3.32767]",
+          "System.Text.Encodings.Web": "(,10.0.32767]",
+          "System.Text.Json": "(,10.0.32767]",
+          "System.Text.RegularExpressions": "(,4.3.32767]",
+          "System.Threading": "(,4.3.32767]",
+          "System.Threading.AccessControl": "(,10.0.32767]",
+          "System.Threading.Channels": "(,10.0.32767]",
+          "System.Threading.Overlapped": "(,4.3.32767]",
+          "System.Threading.Tasks": "(,4.3.32767]",
+          "System.Threading.Tasks.Dataflow": "(,10.0.32767]",
+          "System.Threading.Tasks.Extensions": "(,5.0.32767]",
+          "System.Threading.Tasks.Parallel": "(,4.3.32767]",
+          "System.Threading.Thread": "(,4.3.32767]",
+          "System.Threading.ThreadPool": "(,4.3.32767]",
+          "System.Threading.Timer": "(,4.3.32767]",
+          "System.ValueTuple": "(,4.5.32767]",
+          "System.Xml.ReaderWriter": "(,4.3.32767]",
+          "System.Xml.XDocument": "(,4.3.32767]",
+          "System.Xml.XmlDocument": "(,4.3.32767]",
+          "System.Xml.XmlSerializer": "(,4.3.32767]",
+          "System.Xml.XPath": "(,4.3.32767]",
+          "System.Xml.XPath.XDocument": "(,5.0.32767]"
+        }
+      }
+    }
+  }
+}
