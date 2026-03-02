@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LiteBus.Samples")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+40d35a24d2c4a2698838e2499a7d90cf407b7195")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+53d158f797fb9e8155545bfffe0ccda2ad94db74")]
 [assembly: System.Reflection.AssemblyProductAttribute("LiteBus.Samples")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LiteBus.Samples")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
