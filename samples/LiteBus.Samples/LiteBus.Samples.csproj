@@ -1,12 +1,26 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <!-- Write generator output to obj/ so it can be inspected and committed -->
+        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\..\src\LiteBus.Commands.Abstractions\LiteBus.Commands.Abstractions.csproj"/>
         <ProjectReference Include="..\..\src\LiteBus.Events.Abstractions\LiteBus.Events.Abstractions.csproj"/>
         <ProjectReference Include="..\..\src\LiteBus.Queries.Abstractions\LiteBus.Queries.Abstractions.csproj"/>
+        <!-- Source generator: discovers all LiteBus handler types at compile time for AOT-safe registration -->
+        <ProjectReference Include="..\..\src\LiteBus.SourceGenerator\LiteBus.SourceGenerator.csproj"
+                          OutputItemType="Analyzer"
+                          ReferenceOutputAssembly="false"/>
+    </ItemGroup>
+    <ItemGroup>
+        <!-- Explicitly reference the generator DLL as an Analyzer so Roslyn picks it up.
+             The ProjectReference above with OutputItemType="Analyzer" does the same thing;
+             this explicit entry acts as a fallback for environments where OutputItemType
+             is not processed before the Csc task runs. -->
+        <Analyzer Include="..\..\src\LiteBus.SourceGenerator\bin\$(Configuration)\netstandard2.0\LiteBus.SourceGenerator.dll"
+                  Condition="Exists('..\..\src\LiteBus.SourceGenerator\bin\$(Configuration)\netstandard2.0\LiteBus.SourceGenerator.dll')" />
     </ItemGroup>
 </Project>

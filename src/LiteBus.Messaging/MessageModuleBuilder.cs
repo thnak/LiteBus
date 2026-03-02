@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using LiteBus.Messaging.Abstractions;
@@ -24,6 +25,25 @@ public sealed class MessageModuleBuilder
     public MessageModuleBuilder Register([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type type)
     {
         _messageRegistry.Register(type);
+        return this;
+    }
+
+    /// <summary>
+    ///     Registers multiple types for the message registry.
+    ///     This overload is designed to be called with a compile-time-generated collection (e.g.
+    ///     <c>GeneratedLiteBusHandlers.All</c>) for AOT-safe registration without reflection.
+    /// </summary>
+    /// <param name="types">The types to register.</param>
+    /// <returns>The current <see cref="MessageModuleBuilder" /> instance for method chaining.</returns>
+    public MessageModuleBuilder Register(IEnumerable<Type> types)
+    {
+        ArgumentNullException.ThrowIfNull(types);
+
+        foreach (var type in types)
+        {
+            _messageRegistry.Register(type);
+        }
+
         return this;
     }
 

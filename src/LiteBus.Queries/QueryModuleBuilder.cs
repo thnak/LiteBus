@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
@@ -47,6 +48,33 @@ public sealed class QueryModuleBuilder
         }
 
         _messageRegistry.Register(type);
+        return this;
+    }
+
+    /// <summary>
+    ///     Registers multiple query types for the message registry.
+    ///     This overload is designed to be called with a compile-time-generated collection (e.g.
+    ///     <c>GeneratedLiteBusHandlers.QueryHandlers</c>) for AOT-safe registration without reflection.
+    ///     When called with the source-generated collection, every type in the list already implements
+    ///     <see cref="IRegistrableQueryConstruct" />, so the guard below is only a safety net for
+    ///     arbitrary callers that pass types not produced by the generator.
+    /// </summary>
+    /// <param name="types">The types to register. Each type must implement <see cref="IRegistrableQueryConstruct" />.</param>
+    /// <returns>The current <see cref="QueryModuleBuilder" /> instance for method chaining.</returns>
+    public QueryModuleBuilder Register(IEnumerable<Type> types)
+    {
+        ArgumentNullException.ThrowIfNull(types);
+
+        foreach (var type in types)
+        {
+            if (!type.IsAssignableTo(typeof(IRegistrableQueryConstruct)))
+            {
+                throw new NotSupportedException($"The given type '{type.Name}' is not a query construct and cannot be registered.");
+            }
+
+            _messageRegistry.Register(type);
+        }
+
         return this;
     }
 

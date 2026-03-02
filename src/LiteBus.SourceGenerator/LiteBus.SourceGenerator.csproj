@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <!-- Source generators must target netstandard2.0 regardless of the repo-wide default -->
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <!-- Override the repo-wide TargetFrameworks property from Directory.Build.props -->
+        <TargetFrameworks>netstandard2.0</TargetFrameworks>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+        <IsRoslynComponent>true</IsRoslynComponent>
+        <!-- Source generators must not be packed as regular library references -->
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <!-- Metadata for NuGet packaging -->
+        <Authors>A. Shafie</Authors>
+        <Description>Roslyn source generator for LiteBus: discovers handler types at compile time for AOT-safe registration.</Description>
+        <PackageTags>mediator;cqrs;ddd;commands;queries;events;source-generator;aot</PackageTags>
+        <PackageProjectUrl>https://github.com/litenova/LiteBus</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+        <!-- Suppress NU5128: no lib/netstandard2.0 since IncludeBuildOutput=false -->
+        <NoWarn>NU5128</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" PrivateAssets="all" />
+    </ItemGroup>
+
+</Project>
