@@ -81,9 +81,9 @@ internal sealed class MessageDependencies : IMessageDependencies
 
         if (descriptor.MessageType.IsGenericType)
         {
-#pragma warning disable IL2055
+#pragma warning disable IL2055, IL3050
             handlerType = handlerType.MakeGenericType(_messageType.GetGenericArguments());
-#pragma warning restore IL2055
+#pragma warning restore IL2055, IL3050
         }
 
         return handlerType;

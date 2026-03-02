@@ -35,6 +35,8 @@ public sealed class MessageModuleBuilder
     /// </summary>
     /// <param name="types">The types to register.</param>
     /// <returns>The current <see cref="MessageModuleBuilder" /> instance for method chaining.</returns>
+    [UnconditionalSuppressMessage("Trimming", "IL2072",
+        Justification = "Types in this collection are expected to come from typeof() expressions (e.g. source-generated collections) whose metadata is preserved by the trimmer.")]
     public MessageModuleBuilder Register(IEnumerable<Type> types)
     {
         ArgumentNullException.ThrowIfNull(types);
@@ -47,6 +49,17 @@ public sealed class MessageModuleBuilder
         return this;
     }
 
+    /// <summary>
+    ///     Registers all types from the specified assembly with the message registry.
+    /// </summary>
+    /// <param name="assembly">The assembly from which to register types.</param>
+    /// <returns>The current <see cref="MessageModuleBuilder" /> instance for method chaining.</returns>
+    /// <remarks>
+    ///     This method uses <see cref="Assembly.GetTypes"/> which is not compatible with trimming or Native AOT.
+    ///     Prefer using <see cref="Register(IEnumerable{Type})"/> with a source-generated type list for AOT scenarios.
+    /// </remarks>
+    [RequiresUnreferencedCode("RegisterFromAssembly uses Assembly.GetTypes() which is not compatible with trimming. Use Register(IEnumerable<Type>) with a source-generated type list instead.")]
+    [RequiresDynamicCode("RegisterFromAssembly uses Assembly.GetTypes() which is not compatible with Native AOT. Use Register(IEnumerable<Type>) with a source-generated type list instead.")]
     public MessageModuleBuilder RegisterFromAssembly(Assembly assembly)
     {
         foreach (var type in assembly.GetTypes())

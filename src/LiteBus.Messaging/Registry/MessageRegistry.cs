@@ -309,9 +309,9 @@ internal sealed class MessageRegistry : IMessageRegistry
         try
         {
             // Close the generic type (e.g., GenericValidator<CreateProductCommand>)
-#pragma warning disable IL2055
+#pragma warning disable IL2055, IL3050
             var closedHandlerType = openGenericHandlerType.MakeGenericType(messageType);
-#pragma warning restore IL2055
+#pragma warning restore IL2055, IL3050
 
             // Build descriptors for the closed type
             var closedDescriptors = _descriptorBuilders
