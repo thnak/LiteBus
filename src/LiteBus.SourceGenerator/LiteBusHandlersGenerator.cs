@@ -43,6 +43,12 @@ public sealed class LiteBusHandlersGenerator : IIncrementalGenerator
         "LiteBus.Queries.Abstractions.IRegistrableQueryConstruct"
     ];
 
+    /// <summary>
+    ///     Fully-qualified name of the <c>[StoreInInbox]</c> attribute.
+    ///     Command types that carry this attribute are emitted in the <c>InboxCommands</c> property.
+    /// </summary>
+    private const string StoreInInboxAttributeName = "LiteBus.Commands.Abstractions.StoreInInboxAttribute";
+
     // -----------------------------------------------------------------------
     // IIncrementalGenerator implementation
     // -----------------------------------------------------------------------
@@ -134,7 +140,12 @@ public sealed class LiteBusHandlersGenerator : IIncrementalGenerator
         CloseAndAdd(openGenericEventHandlers,   eventHandlers);
         CloseAndAdd(openGenericQueryHandlers,   queryHandlers);
 
-        var source = GenerateSource(commandHandlers, eventHandlers, queryHandlers);
+        // Collect command types that carry [StoreInInbox] for the InboxCommands property.
+        var inboxCommands = commandHandlers
+            .Where(static t => HasAttribute(t, StoreInInboxAttributeName))
+            .ToList();
+
+        var source = GenerateSource(commandHandlers, eventHandlers, queryHandlers, inboxCommands);
         context.AddSource("GeneratedLiteBusHandlers.g.cs", SourceText.From(source, Encoding.UTF8));
     }
 
@@ -324,6 +335,21 @@ public sealed class LiteBusHandlersGenerator : IIncrementalGenerator
         return false;
     }
 
+    /// <summary>
+    ///     Returns <see langword="true"/> when <paramref name="type"/> has a custom attribute whose
+    ///     fully-qualified name matches <paramref name="fullyQualifiedAttributeName"/>.
+    /// </summary>
+    private static bool HasAttribute(INamedTypeSymbol type, string fullyQualifiedAttributeName)
+    {
+        foreach (var attr in type.GetAttributes())
+        {
+            if (attr.AttributeClass?.ToDisplayString() == fullyQualifiedAttributeName)
+                return true;
+        }
+
+        return false;
+    }
+
     private static string FullyQualifiedName(INamedTypeSymbol type)
     {
         return type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
@@ -336,7 +362,8 @@ public sealed class LiteBusHandlersGenerator : IIncrementalGenerator
     private static string GenerateSource(
         List<INamedTypeSymbol> commandHandlers,
         List<INamedTypeSymbol> eventHandlers,
-        List<INamedTypeSymbol> queryHandlers)
+        List<INamedTypeSymbol> queryHandlers,
+        List<INamedTypeSymbol> inboxCommands)
     {
         var sb = new StringBuilder();
 
@@ -361,12 +388,20 @@ public sealed class LiteBusHandlersGenerator : IIncrementalGenerator
         sb.AppendLine("///         as <c>typeof(Validator&lt;MyCommand&gt;)</c> entries – no runtime");
         sb.AppendLine("///         <c>MakeGenericType</c> is required.");
         sb.AppendLine("///     </para>");
+        sb.AppendLine("///     <para>");
+        sb.AppendLine("///         Command types decorated with <c>[StoreInInbox]</c> are enumerated in");
+        sb.AppendLine("///         <see cref=\"InboxCommands\" /> for reflection-free inbox routing.");
+        sb.AppendLine("///     </para>");
         sb.AppendLine("/// </summary>");
         sb.AppendLine("/// <example>");
         sb.AppendLine("/// <code>");
         sb.AppendLine("/// services.AddLiteBus(lb =>");
         sb.AppendLine("/// {");
-        sb.AppendLine("///     lb.AddCommandModule(cmd => cmd.Register(GeneratedLiteBusHandlers.CommandHandlers));");
+        sb.AppendLine("///     lb.AddCommandModule(cmd =>");
+        sb.AppendLine("///     {");
+        sb.AppendLine("///         cmd.Register(GeneratedLiteBusHandlers.CommandHandlers);");
+        sb.AppendLine("///         cmd.RegisterInboxCommands(GeneratedLiteBusHandlers.InboxCommands);");
+        sb.AppendLine("///     });");
         sb.AppendLine("///     lb.AddEventModule(evt  => evt.Register(GeneratedLiteBusHandlers.EventHandlers));");
         sb.AppendLine("///     lb.AddQueryModule(qry  => qry.Register(GeneratedLiteBusHandlers.QueryHandlers));");
         sb.AppendLine("/// });");
@@ -382,6 +417,11 @@ public sealed class LiteBusHandlersGenerator : IIncrementalGenerator
         sb.AppendLine();
 
         AppendTypeArray(sb, "QueryHandlers", "Compile-time discovered query handler types (including closed forms of open-generic handlers).", queryHandlers);
+        sb.AppendLine();
+
+        AppendTypeArray(sb, "InboxCommands",
+            "Command types decorated with [StoreInInbox]. Pass to CommandModuleBuilder.RegisterInboxCommands() for AOT-safe inbox routing without runtime reflection.",
+            inboxCommands);
         sb.AppendLine();
 
         var all = commandHandlers.Concat(eventHandlers).Concat(queryHandlers).ToList();

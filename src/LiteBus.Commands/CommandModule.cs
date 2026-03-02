@@ -41,7 +41,7 @@ public sealed class CommandModule : IModule
         var moduleBuilder = new CommandModuleBuilder(messageRegistry);
         _builder(moduleBuilder);
 
-        RegisterCommandServices(configuration);
+        RegisterCommandServices(configuration, moduleBuilder.BuildInboxCommandSet());
         RegisterNewHandlers(configuration, messageRegistry, startIndex);
     }
 
@@ -49,11 +49,17 @@ public sealed class CommandModule : IModule
     ///     Registers command-specific services with the dependency registry.
     /// </summary>
     /// <param name="configuration">The module configuration.</param>
-    private static void RegisterCommandServices(IModuleConfiguration configuration)
+    /// <param name="inboxCommandSet">The compile-time-built set of inbox command types.</param>
+    private static void RegisterCommandServices(IModuleConfiguration configuration, InboxCommandSet inboxCommandSet)
     {
         configuration.DependencyRegistry.Register(new DependencyDescriptor(
             typeof(ICommandMediator),
             typeof(CommandMediator)));
+
+        // Register the inbox command set as a singleton so CommandMediator can resolve it without reflection.
+        configuration.DependencyRegistry.Register(new DependencyDescriptor(
+            typeof(ICommandInboxTypeSet),
+            inboxCommandSet));
     }
 
     /// <summary>

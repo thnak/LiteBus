@@ -14,6 +14,7 @@ namespace LiteBus.Commands;
 public sealed class CommandModuleBuilder
 {
     private readonly IMessageRegistry _messageRegistry;
+    private readonly List<Type> _inboxCommandTypes = [];
 
     /// <summary>
     ///     Initializes a new instance of the <see cref="CommandModuleBuilder" /> class.
@@ -100,4 +101,29 @@ public sealed class CommandModuleBuilder
 
         return this;
     }
+
+    /// <summary>
+    ///     Registers the set of command types that are decorated with
+    ///     <see cref="LiteBus.Commands.Abstractions.StoreInInboxAttribute" />.
+    ///     Pass <c>GeneratedLiteBusHandlers.InboxCommands</c> here for a fully AOT-safe, reflection-free setup.
+    /// </summary>
+    /// <param name="inboxCommandTypes">
+    ///     The compile-time list of inbox command types.  Typically sourced from the
+    ///     source-generated <c>GeneratedLiteBusHandlers.InboxCommands</c> property.
+    /// </param>
+    /// <returns>The current <see cref="CommandModuleBuilder" /> instance for method chaining.</returns>
+    /// <example>
+    /// <code>
+    /// builder.RegisterInboxCommands(GeneratedLiteBusHandlers.InboxCommands);
+    /// </code>
+    /// </example>
+    public CommandModuleBuilder RegisterInboxCommands(IReadOnlyList<Type> inboxCommandTypes)
+    {
+        ArgumentNullException.ThrowIfNull(inboxCommandTypes);
+        _inboxCommandTypes.AddRange(inboxCommandTypes);
+        return this;
+    }
+
+    /// <summary>Builds the <see cref="InboxCommandSet" /> from the types accumulated via <see cref="RegisterInboxCommands" />.</summary>
+    internal InboxCommandSet BuildInboxCommandSet() => new(_inboxCommandTypes);
 }
