@@ -4,7 +4,7 @@
     <img src="assets/logo/icon.png" alt="LiteBus Logo" width="128">
   </a>
   <br>
-  LiteBus
+  LiteBus (THIS WAS A COPY TO DO SOME AI WORKFLOW)
 </h1>
 
 <h4 align="center">A lightweight, high-performance mediator for building clean, scalable, and testable .NET applications with CQS and DDD.</h4>
