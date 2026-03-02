@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using LiteBus.Messaging.Abstractions;
 using LiteBus.Messaging.Extensions;
 using LiteBus.Messaging.Registry.Abstractions;
@@ -9,12 +10,12 @@ namespace LiteBus.Messaging.Registry.Builders;
 
 public sealed class HandlerDescriptorBuilder : IHandlerDescriptorBuilder
 {
-    public bool CanBuild(Type type)
+    public bool CanBuild([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type type)
     {
         return type.IsAssignableTo(typeof(IMessageHandler));
     }
 
-    public IEnumerable<IHandlerDescriptor> Build(Type handlerType)
+    public IEnumerable<IHandlerDescriptor> Build([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type handlerType)
     {
         var interfaces = handlerType.GetInterfacesEqualTo(typeof(IMessageHandler<,>));
 

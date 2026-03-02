@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace LiteBus.Commands.Abstractions;
@@ -31,6 +32,7 @@ public interface ICommandMediator
     ///     appropriate handler based on its type, and the command handling pipeline is executed, including
     ///     pre-handlers, the main handler, post-handlers, and error handlers if exceptions occur.
     /// </remarks>
+    [RequiresDynamicCode("Mediating commands with generic handler types requires dynamic code generation for MakeGenericType.")]
     Task SendAsync(ICommand command, CommandMediationSettings? commandMediationSettings = null, CancellationToken cancellationToken = default);
 
     /// <summary>
@@ -50,6 +52,7 @@ public interface ICommandMediator
     ///     is executed, including pre-handlers, the main handler, post-handlers, and error handlers if exceptions occur.
     ///     The result produced by the handler is returned to the caller.
     /// </remarks>
+    [RequiresDynamicCode("Mediating commands with generic handler types requires dynamic code generation for MakeGenericType.")]
     Task<TCommandResult> SendAsync<TCommandResult>(ICommand<TCommandResult> command,
                                                    CommandMediationSettings? commandMediationSettings = null,
                                                    CancellationToken cancellationToken = default);

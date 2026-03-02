@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 using LiteBus.Commands.Abstractions;
@@ -31,12 +32,16 @@ public sealed class CommandMediator : ICommandMediator
     }
 
     /// <inheritdoc />
+    [RequiresDynamicCode("Mediating commands with generic handler types requires dynamic code generation for MakeGenericType.")]
     public Task SendAsync(ICommand command, CommandMediationSettings? commandMediationSettings = null, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(command);
 
         // Check if the command should be diverted to the inbox for durable processing.
+        // The command type's attributes are preserved because commands must be registered via Register<T>().
+#pragma warning disable IL2072
         if (ShouldBeStoredInInbox(command.GetType(), commandMediationSettings))
+#pragma warning restore IL2072
         {
             // The command is stored for deferred execution by the background processor.
             return _commandInbox!.StoreAsync(command, cancellationToken);
@@ -60,6 +65,7 @@ public sealed class CommandMediator : ICommandMediator
     }
 
     /// <inheritdoc />
+    [RequiresDynamicCode("Mediating commands with generic handler types requires dynamic code generation for MakeGenericType.")]
     public Task<TCommandResult> SendAsync<TCommandResult>(ICommand<TCommandResult> command,
                                                           CommandMediationSettings? commandMediationSettings = null,
                                                           CancellationToken cancellationToken = default)
@@ -67,7 +73,10 @@ public sealed class CommandMediator : ICommandMediator
         ArgumentNullException.ThrowIfNull(command);
 
         // Check if the command should be diverted to the inbox for durable processing.
+        // The command type's attributes are preserved because commands must be registered via Register<T>().
+#pragma warning disable IL2072
         if (ShouldBeStoredInInbox(command.GetType(), commandMediationSettings))
+#pragma warning restore IL2072
         {
             // The command is stored for deferred execution.
             _commandInbox!.StoreAsync(command, cancellationToken);
@@ -98,7 +107,9 @@ public sealed class CommandMediator : ICommandMediator
     /// <summary>
     ///     Determines if a command should be stored in the inbox for deferred processing.
     /// </summary>
-    private bool ShouldBeStoredInInbox(Type commandType, CommandMediationSettings? settings)
+    private bool ShouldBeStoredInInbox(
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type commandType,
+        CommandMediationSettings? settings)
     {
         ArgumentNullException.ThrowIfNull(commandType);
 

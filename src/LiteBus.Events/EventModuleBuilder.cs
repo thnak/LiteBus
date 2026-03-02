@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using LiteBus.Events.Abstractions;
@@ -27,7 +28,7 @@ public sealed class EventModuleBuilder
     /// </summary>
     /// <typeparam name="T">The type of event to register, which must implement <see cref="IRegistrableEventConstruct" />.</typeparam>
     /// <returns>The current <see cref="EventModuleBuilder" /> instance for method chaining.</returns>
-    public EventModuleBuilder Register<T>() where T : IRegistrableEventConstruct
+    public EventModuleBuilder Register<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>() where T : IRegistrableEventConstruct
     {
         _messageRegistry.Register(typeof(T));
         return this;
@@ -38,7 +39,7 @@ public sealed class EventModuleBuilder
     /// </summary>
     /// <param name="type">The type of event to register, which must implement <see cref="IRegistrableEventConstruct" />.</param>
     /// <returns>The current <see cref="EventModuleBuilder" /> instance for method chaining.</returns>
-    public EventModuleBuilder Register(Type type)
+    public EventModuleBuilder Register([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type type)
     {
         if (!type.IsAssignableTo(typeof(IRegistrableEventConstruct)))
         {
@@ -54,6 +55,8 @@ public sealed class EventModuleBuilder
     /// </summary>
     /// <param name="assembly">The assembly from which to register event types.</param>
     /// <returns>The current <see cref="EventModuleBuilder" /> instance for method chaining.</returns>
+    [RequiresUnreferencedCode("RegisterFromAssembly uses Assembly.GetTypes() which is not compatible with trimming. Use Register<T>() for each type instead.")]
+    [RequiresDynamicCode("RegisterFromAssembly uses Assembly.GetTypes() which is not compatible with Native AOT. Use Register<T>() for each type instead.")]
     public EventModuleBuilder RegisterFromAssembly(Assembly assembly)
     {
         foreach (var registrableEventConstruct in assembly.GetTypes().Where(t => t.IsAssignableTo(typeof(IRegistrableEventConstruct))))

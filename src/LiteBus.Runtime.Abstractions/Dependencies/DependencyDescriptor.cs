@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace LiteBus.Runtime.Abstractions;
 
@@ -17,7 +18,8 @@ public sealed class DependencyDescriptor : IEquatable<DependencyDescriptor>
     /// <exception cref="System.ArgumentNullException">
     ///     Thrown when <paramref name="dependencyType" /> or <paramref name="implementationType" /> is null.
     /// </exception>
-    public DependencyDescriptor(Type dependencyType, Type implementationType)
+    public DependencyDescriptor(Type dependencyType,
+                                [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type implementationType)
     {
         DependencyType = dependencyType ?? throw new ArgumentNullException(nameof(dependencyType));
         ImplementationType = implementationType ?? throw new ArgumentNullException(nameof(implementationType));
@@ -64,6 +66,7 @@ public sealed class DependencyDescriptor : IEquatable<DependencyDescriptor>
     ///     Gets the implementation type for the dependency, if applicable.
     /// </summary>
     /// <value>The concrete type that implements the dependency, or null for instance/factory registrations.</value>
+    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
     public Type? ImplementationType { get; }
 
     /// <summary>

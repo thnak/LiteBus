@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -21,6 +22,7 @@ public static class EventMediatorExtensions
     /// await eventMediator.PublishAsync(myEvent, cancellationToken);
     /// </code>
     /// </example>
+    [RequiresDynamicCode("Mediating events with generic handler types requires dynamic code generation for MakeGenericType.")]
     public static Task PublishAsync(this IEventMediator eventMediator, IEvent @event, CancellationToken cancellationToken = default)
     {
         return eventMediator.PublishAsync(@event, null, cancellationToken);
@@ -40,6 +42,7 @@ public static class EventMediatorExtensions
     /// await eventMediator.PublishAsync(myEvent, "UserAction", cancellationToken);
     /// </code>
     /// </example>
+    [RequiresDynamicCode("Mediating events with generic handler types requires dynamic code generation for MakeGenericType.")]
     public static Task PublishAsync(this IEventMediator eventMediator, IEvent @event, string tag, CancellationToken cancellationToken = default)
     {
         return eventMediator.PublishAsync(@event,

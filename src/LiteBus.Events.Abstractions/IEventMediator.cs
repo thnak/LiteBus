@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace LiteBus.Events.Abstractions;
@@ -34,6 +35,7 @@ public interface IEventMediator
     ///     By default, if no handlers are found for the event, the operation completes successfully
     ///     without any action. This behavior can be changed using the <see cref="EventMediationSettings" />.
     /// </remarks>
+    [RequiresDynamicCode("Mediating events with generic handler types requires dynamic code generation for MakeGenericType.")]
     Task PublishAsync(IEvent @event, EventMediationSettings? eventMediationSettings = null, CancellationToken cancellationToken = default);
 
     /// <summary>
@@ -56,6 +58,7 @@ public interface IEventMediator
     ///     By default, if no handlers are found for the event, the operation completes successfully
     ///     without any action. This behavior can be changed using the <see cref="EventMediationSettings" />.
     /// </remarks>
+    [RequiresDynamicCode("Mediating events with generic handler types requires dynamic code generation for MakeGenericType.")]
     Task PublishAsync<TEvent>(TEvent @event, EventMediationSettings? eventMediationSettings = null, CancellationToken cancellationToken = default)
         where TEvent : notnull;
 }

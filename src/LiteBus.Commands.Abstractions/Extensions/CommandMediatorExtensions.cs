@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -21,6 +22,7 @@ public static class CommandMediatorExtensions
     /// await commandMediator.SendAsync(myCommand, cancellationToken);
     /// </code>
     /// </example>
+    [RequiresDynamicCode("Mediating commands with generic handler types requires dynamic code generation for MakeGenericType.")]
     public static Task SendAsync(this ICommandMediator commandMediator,
                                  ICommand command,
                                  CancellationToken cancellationToken = default)
@@ -42,6 +44,7 @@ public static class CommandMediatorExtensions
     /// var result = await commandMediator.SendAsync(myCommand, cancellationToken);
     /// </code>
     /// </example>
+    [RequiresDynamicCode("Mediating commands with generic handler types requires dynamic code generation for MakeGenericType.")]
     public static Task<TCommandResult> SendAsync<TCommandResult>(this ICommandMediator commandMediator,
                                                                  ICommand<TCommandResult> command,
                                                                  CancellationToken cancellationToken = default)
@@ -63,6 +66,7 @@ public static class CommandMediatorExtensions
     /// await commandMediator.SendAsync(myCommand, "UserAction", cancellationToken);
     /// </code>
     /// </example>
+    [RequiresDynamicCode("Mediating commands with generic handler types requires dynamic code generation for MakeGenericType.")]
     public static Task SendAsync(this ICommandMediator commandMediator,
                                  ICommand command,
                                  string tag,
@@ -94,6 +98,7 @@ public static class CommandMediatorExtensions
     /// var result = await commandMediator.SendAsync(myCommand, "UserAction", cancellationToken);
     /// </code>
     /// </example>
+    [RequiresDynamicCode("Mediating commands with generic handler types requires dynamic code generation for MakeGenericType.")]
     public static Task<TCommandResult> SendAsync<TCommandResult>(this ICommandMediator commandMediator,
                                                                  ICommand<TCommandResult> command,
                                                                  string tag,

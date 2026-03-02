@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using LiteBus.Messaging.Abstractions;
 
 namespace LiteBus.Messaging;
 
-public sealed class LazyHandlerCollection<THandler, TDescriptor> : ILazyHandlerCollection<THandler, TDescriptor> where TDescriptor : IHandlerDescriptor
+public sealed class LazyHandlerCollection<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] THandler, TDescriptor>
+    : ILazyHandlerCollection<THandler, TDescriptor> where TDescriptor : IHandlerDescriptor
 {
     private readonly List<LazyHandler<THandler, TDescriptor>> _list;
 

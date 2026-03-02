@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 using LiteBus.Messaging.Abstractions;
@@ -16,6 +17,7 @@ public sealed class QueryMediator : IQueryMediator
         _messageMediator = messageMediator;
     }
 
+    [RequiresDynamicCode("Mediating queries with generic handler types requires dynamic code generation for MakeGenericType.")]
     public Task<TQueryResult> QueryAsync<TQueryResult>(IQuery<TQueryResult> query,
                                                        QueryMediationSettings? queryMediationSettings = null,
                                                        CancellationToken cancellationToken = default)
@@ -35,6 +37,7 @@ public sealed class QueryMediator : IQueryMediator
             });
     }
 
+    [RequiresDynamicCode("Mediating queries with generic handler types requires dynamic code generation for MakeGenericType.")]
     public IAsyncEnumerable<TQueryResult> StreamAsync<TQueryResult>(IStreamQuery<TQueryResult> query,
                                                                     QueryMediationSettings? queryMediationSettings = null,
                                                                     CancellationToken cancellationToken = default)

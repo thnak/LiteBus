@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 using LiteBus.Commands.Abstractions;
@@ -28,6 +29,7 @@ public sealed class CommandInboxProcessorHostedService : IHostedService
     /// <param name="serviceProvider">The service provider for creating dependency scopes.</param>
     /// <param name="logger">The logger for recording service activity.</param>
     /// <param name="processor">The registered inbox processor implementation. If null, the service will not run.</param>
+    [RequiresDynamicCode("Mediating commands with generic handler types requires dynamic code generation for MakeGenericType.")]
     public CommandInboxProcessorHostedService(
         IServiceProvider serviceProvider,
         ILogger<CommandInboxProcessorHostedService> logger,
@@ -94,6 +96,7 @@ public sealed class CommandInboxProcessorHostedService : IHostedService
     /// <summary>
     ///     The delegate responsible for executing a batch of commands via the mediator.
     /// </summary>
+    [RequiresDynamicCode("Mediating commands with generic handler types requires dynamic code generation for MakeGenericType.")]
     private async Task HandleCommandsAsync(ICommandInboxBatch commandBatch, CancellationToken cancellationToken)
     {
         // Create a new dependency injection scope for this batch. This ensures that any

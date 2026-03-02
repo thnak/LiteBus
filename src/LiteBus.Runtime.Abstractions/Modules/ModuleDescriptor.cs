@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace LiteBus.Runtime.Abstractions;
@@ -35,8 +36,12 @@ public readonly record struct ModuleDescriptor(
 
         var moduleType = module.GetType();
 
-        // Find all IRequires<T> interfaces implemented by this module
+        // Find all IRequires<T> interfaces implemented by this module.
+        // Module types are always concrete, directly-instantiated classes so their
+        // interfaces are preserved by the linker. Suppress the analyzer warning here.
+#pragma warning disable IL2075
         var dependencies = moduleType.GetInterfaces()
+#pragma warning restore IL2075
             .Where(static i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IRequires<>))
             .Select(static i => i.GetGenericArguments()[0]) // Extract T from IRequires<T>
             .ToHashSet();

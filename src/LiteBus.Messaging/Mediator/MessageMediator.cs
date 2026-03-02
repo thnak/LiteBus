@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using LiteBus.Messaging.Abstractions;
 using LiteBus.Messaging.Contexts.Execution;
 
@@ -49,6 +50,7 @@ internal sealed class MessageMediator : IMessageMediator
     ///     Thrown when no descriptor can be found for the message type with the
     ///     specified resolve strategy.
     /// </exception>
+    [RequiresDynamicCode("Mediating messages with generic handler types requires dynamic code generation for MakeGenericType.")]
     public TMessageResult Mediate<TMessage, TMessageResult>(TMessage message,
                                                             MediateOptions<TMessage, TMessageResult> options) where TMessage : notnull
     {
@@ -71,7 +73,12 @@ internal sealed class MessageMediator : IMessageMediator
                 throw new NoHandlerFoundException(messageType);
             }
 
+            // RegisterPlainMessagesOnSpot is inherently incompatible with AOT/trimming since the
+            // runtime message type cannot be known at compile time. Users who need AOT compatibility
+            // should pre-register all message types and set RegisterPlainMessagesOnSpot = false.
+#pragma warning disable IL2072
             _messageRegistry.Register(messageType);
+#pragma warning restore IL2072
 
             descriptor = options.MessageResolveStrategy.Find(messageType, _messageRegistry);
         }

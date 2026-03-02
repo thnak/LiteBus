@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using LiteBus.Messaging.Abstractions;
@@ -80,7 +81,7 @@ internal sealed class MessageRegistry : IMessageRegistry
     }
 
     /// <inheritdoc />
-    public void Register(Type type)
+    public void Register([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type type)
     {
         ArgumentNullException.ThrowIfNull(type);
 
@@ -106,7 +107,10 @@ internal sealed class MessageRegistry : IMessageRegistry
                 // This is an open generic handler (e.g., GenericValidator<T> : ICommandPreHandler<T>)
                 // where T is a bare type parameter, not a constructed generic like LogActivityCommand<T>.
                 // Store it for JIT resolution when concrete message types are registered.
+                // Open generic handler support requires dynamic code for MakeGenericType at runtime.
+#pragma warning disable IL3050
                 StoreOpenGenericHandler(type);
+#pragma warning restore IL3050
             }
             else
             {
@@ -195,7 +199,13 @@ internal sealed class MessageRegistry : IMessageRegistry
         {
             foreach (var openGenericHandler in _openGenericHandlers.ToList())
             {
+                // Open generic handler support requires dynamic code for MakeGenericType at runtime.
+                // Items stored in _openGenericHandlers lose their DynamicallyAccessedMembers annotation
+                // when retrieved from the list, but they were stored there only after passing through
+                // Register(Type) which has the annotation, so the members are preserved.
+#pragma warning disable IL3050, IL2072
                 TryCloseOpenGenericHandler(openGenericHandler, descriptor, linkToMessageDescriptor: false);
+#pragma warning restore IL3050, IL2072
             }
         }
     }
@@ -240,7 +250,9 @@ internal sealed class MessageRegistry : IMessageRegistry
     ///     Stores an open generic handler type and retroactively closes it for all already-known message types.
     /// </summary>
     /// <param name="openGenericHandlerType">The open generic handler type (e.g., GenericValidator&lt;&gt;).</param>
-    private void StoreOpenGenericHandler(Type openGenericHandlerType)
+    [RequiresDynamicCode("Open generic handler support requires dynamic code generation for MakeGenericType.")]
+    private void StoreOpenGenericHandler(
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type openGenericHandlerType)
     {
         _openGenericHandlers.Add(openGenericHandlerType);
 
@@ -270,7 +282,11 @@ internal sealed class MessageRegistry : IMessageRegistry
     ///     If true, directly adds descriptors to the message descriptor.
     ///     Set to true for committed messages, false for pending messages (to avoid double-linking).
     /// </param>
-    private void TryCloseOpenGenericHandler(Type openGenericHandlerType, MessageDescriptor messageDescriptor, bool linkToMessageDescriptor)
+    [RequiresDynamicCode("Closing open generic handler types requires dynamic code generation for MakeGenericType.")]
+    private void TryCloseOpenGenericHandler(
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type openGenericHandlerType,
+        MessageDescriptor messageDescriptor,
+        bool linkToMessageDescriptor)
     {
         var messageType = messageDescriptor.MessageType;
 
@@ -283,14 +299,21 @@ internal sealed class MessageRegistry : IMessageRegistry
         if (typeParams.Length != 1)
             return;
 
-        // Check if the message type satisfies the generic constraints
+        // Check if the message type satisfies the generic constraints.
+        // The messageType comes from MessageDescriptor.MessageType which doesn't carry
+        // PublicParameterlessConstructor annotation, but message types registered via
+        // Register<T>() have all members preserved, making this safe at runtime.
+#pragma warning disable IL2072
         if (!SatisfiesGenericConstraints(typeParams[0], messageType))
+#pragma warning restore IL2072
             return;
 
         try
         {
             // Close the generic type (e.g., GenericValidator<CreateProductCommand>)
+#pragma warning disable IL2055
             var closedHandlerType = openGenericHandlerType.MakeGenericType(messageType);
+#pragma warning restore IL2055
 
             // Build descriptors for the closed type
             var closedDescriptors = _descriptorBuilders
@@ -323,7 +346,9 @@ internal sealed class MessageRegistry : IMessageRegistry
     /// <param name="typeParameter">The generic type parameter with constraints to check.</param>
     /// <param name="candidateType">The concrete type to check against the constraints.</param>
     /// <returns>True if the candidate type satisfies all constraints; otherwise, false.</returns>
-    private static bool SatisfiesGenericConstraints(Type typeParameter, Type candidateType)
+    private static bool SatisfiesGenericConstraints(
+        Type typeParameter,
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type candidateType)
     {
         // Check type constraints (e.g., where T : ICommand)
         var constraints = typeParameter.GetGenericParameterConstraints();

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace LiteBus.Messaging.Abstractions;
 
@@ -13,5 +14,6 @@ namespace LiteBus.Messaging.Abstractions;
 ///     allows for efficient handling of large numbers of handlers by creating handler instances
 ///     only when they are actually needed.
 /// </remarks>
-public interface ILazyHandlerCollection<THandler, TDescriptor> : IReadOnlyCollection<LazyHandler<THandler, TDescriptor>>
+public interface ILazyHandlerCollection<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] THandler, TDescriptor>
+    : IReadOnlyCollection<LazyHandler<THandler, TDescriptor>>
     where TDescriptor : IHandlerDescriptor;
