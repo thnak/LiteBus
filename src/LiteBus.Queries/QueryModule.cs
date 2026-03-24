@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using LiteBus.Messaging.Abstractions;
 using LiteBus.Messaging.Registry;
 using LiteBus.Queries.Abstractions;
@@ -36,12 +36,11 @@ public sealed class QueryModule : IModule
 
         var messageRegistry = MessageRegistryAccessor.Instance;
 
-        var startIndex = messageRegistry.Handlers.Count;
         var moduleBuilder = new QueryModuleBuilder(messageRegistry);
         _builder(moduleBuilder);
 
         RegisterQueryServices(configuration);
-        RegisterNewHandlers(configuration, messageRegistry, startIndex);
+        RegisterNewHandlers(configuration, messageRegistry, moduleBuilder.GetRegisteredTypes());
     }
 
     /// <summary>
@@ -60,16 +59,19 @@ public sealed class QueryModule : IModule
     /// </summary>
     /// <param name="configuration">The module configuration.</param>
     /// <param name="messageRegistry">The message registry containing handler information.</param>
-    /// <param name="startIndex">The index from which to start processing new handlers.</param>
-    private static void RegisterNewHandlers(IModuleConfiguration configuration, IMessageRegistry messageRegistry, int startIndex)
+    /// <param name="requestedTypes">
+    ///     The set of types explicitly requested by this builder call.
+    ///     Handlers whose <see cref="IHandlerDescriptor.HandlerType" /> is in this set will be registered
+    ///     in the dependency container, regardless of whether they were already present in the global
+    ///     registry (e.g. when multiple DI containers are configured concurrently, as in MS Orleans multi-silo tests).
+    /// </param>
+    private static void RegisterNewHandlers(IModuleConfiguration configuration, IMessageRegistry messageRegistry, HashSet<Type> requestedTypes)
     {
-        var newHandlers = messageRegistry.Handlers.Skip(startIndex);
-
-        foreach (var handlerDescriptor in newHandlers)
+        foreach (var handlerDescriptor in messageRegistry.Handlers)
         {
             var handlerType = handlerDescriptor.HandlerType;
 
-            if (handlerType is { IsClass: true, IsAbstract: false })
+            if (handlerType is { IsClass: true, IsAbstract: false } && requestedTypes.Contains(handlerType))
             {
                 configuration.DependencyRegistry.Register(new DependencyDescriptor(
                     handlerType,

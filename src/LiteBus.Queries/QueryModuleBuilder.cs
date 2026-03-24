@@ -14,6 +14,7 @@ namespace LiteBus.Queries;
 public sealed class QueryModuleBuilder
 {
     private readonly IMessageRegistry _messageRegistry;
+    private readonly HashSet<Type> _registeredTypes = [];
 
     /// <summary>
     ///     Initializes a new instance of the <see cref="QueryModuleBuilder" /> class.
@@ -32,6 +33,7 @@ public sealed class QueryModuleBuilder
     public QueryModuleBuilder Register<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>() where T : IRegistrableQueryConstruct
     {
         _messageRegistry.Register(typeof(T));
+        _registeredTypes.Add(typeof(T));
         return this;
     }
 
@@ -48,6 +50,7 @@ public sealed class QueryModuleBuilder
         }
 
         _messageRegistry.Register(type);
+        _registeredTypes.Add(type);
         return this;
     }
 
@@ -75,6 +78,7 @@ public sealed class QueryModuleBuilder
             }
 
             _messageRegistry.Register(type);
+            _registeredTypes.Add(type);
         }
 
         return this;
@@ -96,8 +100,16 @@ public sealed class QueryModuleBuilder
         foreach (var registrableQueryConstruct in assembly.GetTypes().Where(t => t.IsAssignableTo(typeof(IRegistrableQueryConstruct))))
         {
             _messageRegistry.Register(registrableQueryConstruct);
+            _registeredTypes.Add(registrableQueryConstruct);
         }
 
         return this;
     }
+
+    /// <summary>
+    ///     Gets the set of types that were requested to be registered by this builder instance.
+    ///     Used by <see cref="QueryModule" /> to determine which handler descriptors belong
+    ///     to this specific build call, regardless of global registry deduplication.
+    /// </summary>
+    internal HashSet<Type> GetRegisteredTypes() => _registeredTypes;
 }

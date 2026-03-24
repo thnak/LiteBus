@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using LiteBus.Messaging.Abstractions;
 using LiteBus.Messaging.Mediator;
 using LiteBus.Messaging.Registry;
@@ -30,7 +30,6 @@ public sealed class MessageModule : IModule
     {
         // Create or get the message registry - this will be shared across all messaging-related modules
         var messageRegistry = MessageRegistryAccessor.Instance;
-        var startIndex = messageRegistry.Handlers.Count;
 
         configuration.SetContext(messageRegistry);
 
@@ -40,7 +39,7 @@ public sealed class MessageModule : IModule
 
         // Register core messaging services
         RegisterMessagingServices(configuration, messageRegistry);
-        RegisterNewHandlers(configuration, messageRegistry, startIndex);
+        RegisterNewHandlers(configuration, messageRegistry, moduleBuilder.GetRegisteredTypes());
     }
 
     /// <summary>
@@ -73,16 +72,19 @@ public sealed class MessageModule : IModule
     /// </summary>
     /// <param name="configuration">The module configuration to register handlers with.</param>
     /// <param name="messageRegistry">The message registry containing the handlers.</param>
-    /// <param name="startIndex">The index from which to start registering new handlers.</param>
-    private static void RegisterNewHandlers(IModuleConfiguration configuration, IMessageRegistry messageRegistry, int startIndex)
+    /// <param name="requestedTypes">
+    ///     The set of types explicitly requested by this builder call.
+    ///     Handlers whose <see cref="IHandlerDescriptor.HandlerType" /> is in this set will be registered
+    ///     in the dependency container, regardless of whether they were already present in the global
+    ///     registry (e.g. when multiple DI containers are configured concurrently, as in MS Orleans multi-silo tests).
+    /// </param>
+    private static void RegisterNewHandlers(IModuleConfiguration configuration, IMessageRegistry messageRegistry, HashSet<Type> requestedTypes)
     {
-        var newHandlers = messageRegistry.Handlers.Skip(startIndex);
-
-        foreach (var handlerDescriptor in newHandlers)
+        foreach (var handlerDescriptor in messageRegistry.Handlers)
         {
             var handlerType = handlerDescriptor.HandlerType;
 
-            if (handlerType is { IsClass: true, IsAbstract: false })
+            if (handlerType is { IsClass: true, IsAbstract: false } && requestedTypes.Contains(handlerType))
             {
                 configuration.DependencyRegistry.Register(new DependencyDescriptor(handlerType, handlerType));
             }
