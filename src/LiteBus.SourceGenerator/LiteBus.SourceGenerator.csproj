@@ -3,13 +3,19 @@
     <PropertyGroup>
         <!-- Source generators must target netstandard2.0 regardless of the repo-wide default -->
         <TargetFramework>netstandard2.0</TargetFramework>
-        <!-- Override the repo-wide TargetFrameworks property from Directory.Build.props -->
+        <!-- Override Directory.Build.props multi-targeting for this project -->
         <TargetFrameworks>netstandard2.0</TargetFrameworks>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
         <IsRoslynComponent>true</IsRoslynComponent>
         <!-- Source generators must not be packed as regular library references -->
         <IncludeBuildOutput>false</IncludeBuildOutput>
+        <!-- Source generators are consumed from analyzers/dotnet/cs, not lib/ -->
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+        <!-- Avoid creating an empty snupkg when IncludeBuildOutput=false -->
+        <IncludeSymbols>false</IncludeSymbols>
+        <!-- AOT analyzer is not applicable to netstandard2.0 source generators -->
+        <IsAotCompatible>false</IsAotCompatible>
         <!-- Metadata for NuGet packaging -->
         <Authors>A. Shafie</Authors>
         <Description>Roslyn source generator for LiteBus: discovers handler types at compile time for AOT-safe registration.</Description>
@@ -24,6 +30,12 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all" />
         <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" PrivateAssets="all" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- Pack the generator assembly as an analyzer so consumers load it at compile-time -->
+        <None Include="$(OutputPath)$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+        <None Include="$(OutputPath)$(AssemblyName).pdb" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" Condition="Exists('$(OutputPath)$(AssemblyName).pdb')" />
     </ItemGroup>
 
 </Project>
