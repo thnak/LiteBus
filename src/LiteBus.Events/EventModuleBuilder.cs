@@ -14,6 +14,7 @@ namespace LiteBus.Events;
 public sealed class EventModuleBuilder
 {
     private readonly IMessageRegistry _messageRegistry;
+    private readonly HashSet<Type> _registeredTypes = [];
 
     /// <summary>
     ///     Initializes a new instance of the <see cref="EventModuleBuilder" /> class.
@@ -32,6 +33,7 @@ public sealed class EventModuleBuilder
     public EventModuleBuilder Register<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>() where T : IRegistrableEventConstruct
     {
         _messageRegistry.Register(typeof(T));
+        _registeredTypes.Add(typeof(T));
         return this;
     }
 
@@ -48,6 +50,7 @@ public sealed class EventModuleBuilder
         }
 
         _messageRegistry.Register(type);
+        _registeredTypes.Add(type);
         return this;
     }
 
@@ -75,6 +78,7 @@ public sealed class EventModuleBuilder
             }
 
             _messageRegistry.Register(type);
+            _registeredTypes.Add(type);
         }
 
         return this;
@@ -96,8 +100,16 @@ public sealed class EventModuleBuilder
         foreach (var registrableEventConstruct in assembly.GetTypes().Where(t => t.IsAssignableTo(typeof(IRegistrableEventConstruct))))
         {
             _messageRegistry.Register(registrableEventConstruct);
+            _registeredTypes.Add(registrableEventConstruct);
         }
 
         return this;
     }
+
+    /// <summary>
+    ///     Gets the set of types that were requested to be registered by this builder instance.
+    ///     Used by <see cref="EventModule" /> to determine which handler descriptors belong
+    ///     to this specific build call, regardless of global registry deduplication.
+    /// </summary>
+    internal HashSet<Type> GetRegisteredTypes() => _registeredTypes;
 }

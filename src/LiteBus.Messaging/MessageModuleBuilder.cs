@@ -9,6 +9,7 @@ namespace LiteBus.Messaging;
 public sealed class MessageModuleBuilder
 {
     private readonly IMessageRegistry _messageRegistry;
+    private readonly HashSet<Type> _registeredTypes = [];
 
     public MessageModuleBuilder(IMessageRegistry messageRegistry)
     {
@@ -18,6 +19,7 @@ public sealed class MessageModuleBuilder
     public MessageModuleBuilder Register<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>()
     {
         _messageRegistry.Register(typeof(T));
+        _registeredTypes.Add(typeof(T));
 
         return this;
     }
@@ -25,6 +27,7 @@ public sealed class MessageModuleBuilder
     public MessageModuleBuilder Register([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type type)
     {
         _messageRegistry.Register(type);
+        _registeredTypes.Add(type);
         return this;
     }
 
@@ -44,6 +47,7 @@ public sealed class MessageModuleBuilder
         foreach (var type in types)
         {
             _messageRegistry.Register(type);
+            _registeredTypes.Add(type);
         }
 
         return this;
@@ -65,8 +69,16 @@ public sealed class MessageModuleBuilder
         foreach (var type in assembly.GetTypes())
         {
             _messageRegistry.Register(type);
+            _registeredTypes.Add(type);
         }
 
         return this;
     }
+
+    /// <summary>
+    ///     Gets the set of types that were requested to be registered by this builder instance.
+    ///     Used by <see cref="MessageModule" /> to determine which handler descriptors belong
+    ///     to this specific build call, regardless of global registry deduplication.
+    /// </summary>
+    internal HashSet<Type> GetRegisteredTypes() => _registeredTypes;
 }

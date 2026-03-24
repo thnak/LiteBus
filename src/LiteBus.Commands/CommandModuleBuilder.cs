@@ -15,6 +15,7 @@ public sealed class CommandModuleBuilder
 {
     private readonly IMessageRegistry _messageRegistry;
     private readonly List<Type> _inboxCommandTypes = [];
+    private readonly HashSet<Type> _registeredTypes = [];
 
     /// <summary>
     ///     Initializes a new instance of the <see cref="CommandModuleBuilder" /> class.
@@ -33,6 +34,7 @@ public sealed class CommandModuleBuilder
     public CommandModuleBuilder Register<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>() where T : IRegistrableCommandConstruct
     {
         _messageRegistry.Register(typeof(T));
+        _registeredTypes.Add(typeof(T));
         return this;
     }
 
@@ -49,6 +51,7 @@ public sealed class CommandModuleBuilder
         }
 
         _messageRegistry.Register(type);
+        _registeredTypes.Add(type);
         return this;
     }
 
@@ -76,6 +79,7 @@ public sealed class CommandModuleBuilder
             }
 
             _messageRegistry.Register(type);
+            _registeredTypes.Add(type);
         }
 
         return this;
@@ -97,6 +101,7 @@ public sealed class CommandModuleBuilder
         foreach (var registrableCommandConstruct in assembly.GetTypes().Where(t => t.IsAssignableTo(typeof(IRegistrableCommandConstruct))))
         {
             _messageRegistry.Register(registrableCommandConstruct);
+            _registeredTypes.Add(registrableCommandConstruct);
         }
 
         return this;
@@ -126,4 +131,11 @@ public sealed class CommandModuleBuilder
 
     /// <summary>Builds the <see cref="InboxCommandSet" /> from the types accumulated via <see cref="RegisterInboxCommands" />.</summary>
     internal InboxCommandSet BuildInboxCommandSet() => new(_inboxCommandTypes);
+
+    /// <summary>
+    ///     Gets the set of types that were requested to be registered by this builder instance.
+    ///     Used by <see cref="CommandModule" /> to determine which handler descriptors belong
+    ///     to this specific build call, regardless of global registry deduplication.
+    /// </summary>
+    internal HashSet<Type> GetRegisteredTypes() => _registeredTypes;
 }
