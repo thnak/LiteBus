@@ -3,6 +3,7 @@ using LiteBus.CommandModule.UnitTests.UseCases.CommandWithTag;
 using LiteBus.CommandModule.UnitTests.UseCases.CreateProduct;
 using LiteBus.CommandModule.UnitTests.UseCases.LogActivity;
 using LiteBus.CommandModule.UnitTests.UseCases.ProblematicCommand;
+using LiteBus.CommandModule.UnitTests.UseCases.StoreInInboxCommand;
 using LiteBus.CommandModule.UnitTests.UseCases.UpdateProduct;
 using LiteBus.Commands;
 using LiteBus.Commands.Abstractions;
@@ -286,5 +287,92 @@ public sealed class CommandModuleTests : LiteBusTestBase
 
         // Assert
         await act.Should().ThrowAsync<MultipleHandlerFoundException>();
+    }
+
+    [Fact]
+    public async Task Send_StoreInInboxCommand_ShouldBeStoredInInbox_WhenInboxCommandsRegistered()
+    {
+        // Arrange — simulate what GeneratedLiteBusHandlers.InboxCommands would emit at compile time.
+        var inboxCommands = new[] { typeof(StoreInInboxCommand) };
+
+        var fakeInbox = new FakeCommandInbox();
+
+        var serviceProvider = new ServiceCollection()
+            .AddSingleton<ICommandInbox>(fakeInbox)
+            .AddLiteBus(configuration =>
+            {
+                configuration.AddCommandModule(builder =>
+                {
+                    builder.Register<StoreInInboxCommandHandler>();
+                    builder.RegisterInboxCommands(inboxCommands);
+                });
+            })
+            .BuildServiceProvider();
+
+        var commandMediator = serviceProvider.GetRequiredService<ICommandMediator>();
+        var command = new StoreInInboxCommand();
+
+        // Act
+        await commandMediator.SendAsync(command);
+
+        // Assert — the command must have been handed to the inbox, not the in-process handler.
+        fakeInbox.StoredCommands.Should().ContainSingle().Which.Should().BeSameAs(command);
+        command.ExecutedTypes.Should().BeEmpty();
+    }
+
+    [Fact]
+    public async Task Send_StoreInInboxCommand_ShouldExecuteDirectly_WhenInboxCommandsNotRegistered()
+    {
+        // Arrange — RegisterInboxCommands is intentionally NOT called.
+        var serviceProvider = new ServiceCollection()
+            .AddLiteBus(configuration =>
+            {
+                configuration.AddCommandModule(builder =>
+                {
+                    builder.Register<StoreInInboxCommandHandler>();
+                });
+            })
+            .BuildServiceProvider();
+
+        var commandMediator = serviceProvider.GetRequiredService<ICommandMediator>();
+        var command = new StoreInInboxCommand();
+
+        // Act
+        await commandMediator.SendAsync(command);
+
+        // Assert — with no inbox registered the command executes the normal in-process handler.
+        command.ExecutedTypes.Should().ContainSingle().Which.Should().Be<StoreInInboxCommandHandler>();
+    }
+
+    [Fact]
+    public async Task Send_NormalCommand_ShouldNotBeStoredInInbox_WhenInboxCommandsRegistered()
+    {
+        // Arrange — only StoreInInboxCommand is listed as an inbox command; UpdateProductCommand is not.
+        var inboxCommands = new[] { typeof(StoreInInboxCommand) };
+
+        var fakeInbox = new FakeCommandInbox();
+
+        var serviceProvider = new ServiceCollection()
+            .AddSingleton<ICommandInbox>(fakeInbox)
+            .AddLiteBus(configuration =>
+            {
+                configuration.AddCommandModule(builder =>
+                {
+                    builder.Register<StoreInInboxCommandHandler>();
+                    builder.Register<UpdateProductCommandHandler>();
+                    builder.RegisterInboxCommands(inboxCommands);
+                });
+            })
+            .BuildServiceProvider();
+
+        var commandMediator = serviceProvider.GetRequiredService<ICommandMediator>();
+        var command = new UpdateProductCommand();
+
+        // Act
+        await commandMediator.SendAsync(command);
+
+        // Assert — a non-inbox command must always execute in-process, even when inbox is configured.
+        fakeInbox.StoredCommands.Should().BeEmpty();
+        command.ExecutedTypes.Should().ContainSingle().Which.Should().Be<UpdateProductCommandHandler>();
     }
 }

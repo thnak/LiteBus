@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace LiteBus.Messaging.Abstractions;
 
@@ -11,7 +12,7 @@ namespace LiteBus.Messaging.Abstractions;
 ///     This structure allows for lazy initialization of handlers, which can improve performance
 ///     by deferring the creation of handler instances until they are actually needed.
 /// </remarks>
-public struct LazyHandler<THandler, TDescriptor>
+public struct LazyHandler<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] THandler, TDescriptor>
 {
     /// <summary>
     ///     Gets or initializes the lazily initialized handler.

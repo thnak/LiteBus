@@ -15,7 +15,6 @@ public sealed class EventMediator : IEventPublisher
     {
         _messageMediator = messageMediator;
     }
-
     public Task PublishAsync(IEvent @event, EventMediationSettings? eventMediationSettings = null, CancellationToken cancellationToken = default)
     {
         eventMediationSettings ??= new EventMediationSettings();
@@ -33,7 +32,6 @@ public sealed class EventMediator : IEventPublisher
             RegisterPlainMessagesOnSpot = !eventMediationSettings.ThrowIfNoHandlerFound
         });
     }
-
     public Task PublishAsync<TEvent>(TEvent @event, EventMediationSettings? eventMediationSettings = null, CancellationToken cancellationToken = default) where TEvent : notnull
     {
         eventMediationSettings ??= new EventMediationSettings();

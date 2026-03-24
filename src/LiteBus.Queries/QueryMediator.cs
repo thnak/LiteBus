@@ -15,7 +15,6 @@ public sealed class QueryMediator : IQueryMediator
     {
         _messageMediator = messageMediator;
     }
-
     public Task<TQueryResult> QueryAsync<TQueryResult>(IQuery<TQueryResult> query,
                                                        QueryMediationSettings? queryMediationSettings = null,
                                                        CancellationToken cancellationToken = default)
@@ -34,7 +33,6 @@ public sealed class QueryMediator : IQueryMediator
                 Items = queryMediationSettings.Items
             });
     }
-
     public IAsyncEnumerable<TQueryResult> StreamAsync<TQueryResult>(IStreamQuery<TQueryResult> query,
                                                                     QueryMediationSettings? queryMediationSettings = null,
                                                                     CancellationToken cancellationToken = default)

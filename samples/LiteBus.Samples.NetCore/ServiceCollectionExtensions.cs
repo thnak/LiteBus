@@ -2,7 +2,6 @@ using LiteBus.Commands;
 using LiteBus.Events;
 using LiteBus.Extensions.Microsoft.DependencyInjection;
 using LiteBus.Queries;
-using LiteBus.Samples.Commands;
 
 namespace LiteBus.Samples.NetCore;
 
@@ -14,14 +13,13 @@ public static class ServiceCollectionExtensions
     /// </summary>
     public static IServiceCollection AddLiteBusExample(this IServiceCollection services)
     {
-        // Register LiteBus with all modules
+        // AOT-safe registration: use compile-time-generated type lists from the source generator
+        // instead of RegisterFromAssembly which requires reflection.
         services.AddLiteBus(liteBus =>
         {
-            var exampleAssembly = typeof(PlaceOrderCommandHandler).Assembly;
-
-            liteBus.AddCommandModule(module => module.RegisterFromAssembly(exampleAssembly));
-            liteBus.AddQueryModule(module => module.RegisterFromAssembly(exampleAssembly));
-            liteBus.AddEventModule(module => module.RegisterFromAssembly(exampleAssembly));
+            liteBus.AddCommandModule(module => module.Register(LiteBus.Generated.GeneratedLiteBusHandlers.CommandHandlers));
+            liteBus.AddQueryModule(module => module.Register(LiteBus.Generated.GeneratedLiteBusHandlers.QueryHandlers));
+            liteBus.AddEventModule(module => module.Register(LiteBus.Generated.GeneratedLiteBusHandlers.EventHandlers));
         });
 
         return services;

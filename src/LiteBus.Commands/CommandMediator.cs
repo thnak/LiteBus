@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Concurrent;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using LiteBus.Commands.Abstractions;
@@ -14,7 +13,7 @@ namespace LiteBus.Commands;
 public sealed class CommandMediator : ICommandMediator
 {
     private readonly ICommandInbox? _commandInbox;
-    private readonly ConcurrentDictionary<Type, bool> _inboxAttributeCache = new();
+    private readonly ICommandInboxTypeSet _inboxTypeSet;
     private readonly IMessageMediator _messageMediator;
 
     /// <summary>
@@ -22,12 +21,22 @@ public sealed class CommandMediator : ICommandMediator
     /// </summary>
     /// <param name="messageMediator">The core message mediator for immediate command execution.</param>
     /// <param name="commandInbox">The registered command inbox implementation. If null, the inbox feature is disabled.</param>
-    public CommandMediator(IMessageMediator messageMediator, ICommandInbox? commandInbox = null)
+    /// <param name="inboxTypeSet">
+    ///     The compile-time-built set of command types decorated with
+    ///     <see cref="StoreInInboxAttribute" />.  Built from
+    ///     <c>GeneratedLiteBusHandlers.InboxCommands</c> via
+    ///     <see cref="CommandModuleBuilder.RegisterInboxCommands" /> and registered as a singleton
+    ///     by <see cref="CommandModule" />.
+    ///     When <see langword="null" /> (i.e. no inbox commands were registered) an empty set is used,
+    ///     so no commands are ever routed to the inbox.
+    /// </param>
+    public CommandMediator(IMessageMediator messageMediator, ICommandInbox? commandInbox = null, ICommandInboxTypeSet? inboxTypeSet = null)
     {
         ArgumentNullException.ThrowIfNull(messageMediator);
 
         _messageMediator = messageMediator;
         _commandInbox = commandInbox;
+        _inboxTypeSet = inboxTypeSet ?? new InboxCommandSet([]);
     }
 
     /// <inheritdoc />
@@ -97,19 +106,17 @@ public sealed class CommandMediator : ICommandMediator
 
     /// <summary>
     ///     Determines if a command should be stored in the inbox for deferred processing.
+    ///     Uses the compile-time-built <see cref="ICommandInboxTypeSet" /> for an O(1) AOT-safe lookup —
+    ///     no runtime reflection or attribute scanning is performed.
     /// </summary>
     private bool ShouldBeStoredInInbox(Type commandType, CommandMediationSettings? settings)
     {
-        ArgumentNullException.ThrowIfNull(commandType);
-
         // A command should not be stored again if it's already being processed from the inbox.
         if (settings?.Items.ContainsKey("IsInboxExecution") == true)
         {
             return false;
         }
 
-        return _inboxAttributeCache.GetOrAdd(
-            commandType,
-            type => Attribute.GetCustomAttribute(type, typeof(StoreInInboxAttribute)) is not null);
+        return _inboxTypeSet.IsInboxCommand(commandType);
     }
 }

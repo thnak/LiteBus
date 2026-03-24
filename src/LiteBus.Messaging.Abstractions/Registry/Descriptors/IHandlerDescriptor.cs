@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace LiteBus.Messaging.Abstractions;
 
@@ -30,5 +31,6 @@ public interface IHandlerDescriptor
     /// <summary>
     ///     Gets the type of the handler. This represents the actual implementation type of the handler.
     /// </summary>
+    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
     Type HandlerType { get; }
 }

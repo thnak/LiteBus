@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using LiteBus.Messaging.Abstractions;
 using LiteBus.Messaging.Extensions;
@@ -55,7 +56,7 @@ internal sealed class MessageDependencies : IMessageDependencies
     /// <summary>
     ///     Resolves handlers from the provided descriptors and a handler resolution function.
     /// </summary>
-    private ILazyHandlerCollection<THandler, TDescriptor> ResolveHandlers<THandler, TDescriptor>(
+    private ILazyHandlerCollection<THandler, TDescriptor> ResolveHandlers<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] THandler, TDescriptor>(
         IEnumerable<TDescriptor> descriptors,
         Func<Type, THandler> resolveFunc) where TDescriptor : IHandlerDescriptor
     {
@@ -72,13 +73,27 @@ internal sealed class MessageDependencies : IMessageDependencies
     }
 
     /// <summary>
-    ///     Retrieves the handler type from a descriptor, adjusting for generic types as necessary.
+    ///     Retrieves the handler type from a descriptor, adjusting for generic message types as necessary.
+    ///     When the registered handler is an open generic type definition (e.g. <c>SomeHandler&lt;&gt;</c>
+    ///     for <c>SomeMessage&lt;T&gt;</c>), it is closed with the actual type arguments of the runtime
+    ///     message.  This path is only exercised when a handler type definition is registered manually
+    ///     via <c>Register(typeof(SomeHandler&lt;&gt;))</c>; the source generator always emits already-
+    ///     closed types so <c>MakeGenericType</c> is not called at all in the AOT-safe path.
     /// </summary>
+    [UnconditionalSuppressMessage("Trimming", "IL2055",
+        Justification = "handlerType is only a generic type definition when Register(typeof(OpenHandler<>)) was called explicitly. " +
+                        "The source generator emits closed typeof() forms, so this branch is never reached in the AOT-safe path.")]
+    [UnconditionalSuppressMessage("AOT", "IL3050",
+        Justification = "Same as IL2055: this branch is unreachable when using the source-generated registration path.")]
     private Type GetHandlerType(IHandlerDescriptor descriptor)
     {
         var handlerType = descriptor.HandlerType;
 
-        if (descriptor.MessageType.IsGenericType)
+        // Only close the generic type when both the message type is generic AND the stored handler
+        // is itself an open generic type definition (e.g. SomeHandler<>).  When the source generator
+        // is used, handlerType is always already closed, so IsGenericTypeDefinition is false and
+        // MakeGenericType is never called.
+        if (descriptor.MessageType.IsGenericType && handlerType.IsGenericTypeDefinition)
         {
             handlerType = handlerType.MakeGenericType(_messageType.GetGenericArguments());
         }

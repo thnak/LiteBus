@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace LiteBus.Messaging.Abstractions;
 
@@ -56,7 +57,7 @@ public interface IMessageRegistry : IReadOnlyCollection<IMessageDescriptor>
     /// }
     /// </code>
     /// </example>
-    void Register(Type type);
+    void Register([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type type);
 
     /// <summary>
     ///     Clears all registered messages and handlers from the registry, resetting it to an empty state.

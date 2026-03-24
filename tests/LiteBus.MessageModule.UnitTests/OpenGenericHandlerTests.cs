@@ -82,13 +82,14 @@ public sealed class OpenGenericHandlerTests : LiteBusTestBase
     [Fact]
     public async Task Send_WithOpenGenericPreHandler_ShouldExecuteForConcreteCommand()
     {
-        // Arrange
+        // Arrange - register the closed form of the open generic handler explicitly,
+        // as the source generator would emit: typeof(OpenGenericPreHandler<SimpleCommand>).
         var serviceProvider = new ServiceCollection()
             .AddLiteBus(configuration =>
             {
                 configuration.AddCommandModule(builder =>
                 {
-                    builder.Register(typeof(OpenGenericPreHandler<>));
+                    builder.Register(typeof(OpenGenericPreHandler<SimpleCommand>));
                     builder.Register<SimpleCommandHandler>();
                     builder.Register<SimpleCommand>();
                 });
@@ -110,13 +111,14 @@ public sealed class OpenGenericHandlerTests : LiteBusTestBase
     [Fact]
     public async Task Send_WithOpenGenericPreHandler_ShouldApplyToMultipleCommandTypes()
     {
-        // Arrange
+        // Arrange - register a closed form per command type, as the source generator would emit.
         var serviceProvider = new ServiceCollection()
             .AddLiteBus(configuration =>
             {
                 configuration.AddCommandModule(builder =>
                 {
-                    builder.Register(typeof(OpenGenericPreHandler<>));
+                    builder.Register(typeof(OpenGenericPreHandler<SimpleCommand>));
+                    builder.Register(typeof(OpenGenericPreHandler<AnotherSimpleCommand>));
                     builder.Register<SimpleCommandHandler>();
                     builder.Register<SimpleCommand>();
                     builder.Register<AnotherSimpleCommandHandler>();
@@ -147,13 +149,13 @@ public sealed class OpenGenericHandlerTests : LiteBusTestBase
     [Fact]
     public async Task Send_WithOpenGenericPostHandler_ShouldExecuteForConcreteCommand()
     {
-        // Arrange
+        // Arrange - register the closed form as the source generator would emit.
         var serviceProvider = new ServiceCollection()
             .AddLiteBus(configuration =>
             {
                 configuration.AddCommandModule(builder =>
                 {
-                    builder.Register(typeof(OpenGenericPostHandler<>));
+                    builder.Register(typeof(OpenGenericPostHandler<SimpleCommand>));
                     builder.Register<SimpleCommandHandler>();
                     builder.Register<SimpleCommand>();
                 });
@@ -175,14 +177,14 @@ public sealed class OpenGenericHandlerTests : LiteBusTestBase
     [Fact]
     public async Task Send_WithOpenGenericPreAndPostHandler_ShouldExecuteInCorrectOrder()
     {
-        // Arrange
+        // Arrange - register closed forms as the source generator would emit.
         var serviceProvider = new ServiceCollection()
             .AddLiteBus(configuration =>
             {
                 configuration.AddCommandModule(builder =>
                 {
-                    builder.Register(typeof(OpenGenericPreHandler<>));
-                    builder.Register(typeof(OpenGenericPostHandler<>));
+                    builder.Register(typeof(OpenGenericPreHandler<SimpleCommand>));
+                    builder.Register(typeof(OpenGenericPostHandler<SimpleCommand>));
                     builder.Register<SimpleCommandHandler>();
                     builder.Register<SimpleCommand>();
                 });
@@ -205,13 +207,13 @@ public sealed class OpenGenericHandlerTests : LiteBusTestBase
     [Fact]
     public async Task Send_OpenGenericRegisteredBeforeCommand_ShouldStillApply()
     {
-        // Arrange - register open generic BEFORE registering the command and handler
+        // Arrange - register the closed form before the command type and handler.
         var serviceProvider = new ServiceCollection()
             .AddLiteBus(configuration =>
             {
                 configuration.AddCommandModule(builder =>
                 {
-                    builder.Register(typeof(OpenGenericPreHandler<>));
+                    builder.Register(typeof(OpenGenericPreHandler<SimpleCommand>));
                     builder.Register<SimpleCommand>();
                     builder.Register<SimpleCommandHandler>();
                 });
@@ -233,7 +235,7 @@ public sealed class OpenGenericHandlerTests : LiteBusTestBase
     [Fact]
     public async Task Send_OpenGenericRegisteredAfterCommand_ShouldStillApply()
     {
-        // Arrange - register the command and handler BEFORE the open generic
+        // Arrange - register the closed form after the command type and handler.
         var serviceProvider = new ServiceCollection()
             .AddLiteBus(configuration =>
             {
@@ -241,7 +243,7 @@ public sealed class OpenGenericHandlerTests : LiteBusTestBase
                 {
                     builder.Register<SimpleCommand>();
                     builder.Register<SimpleCommandHandler>();
-                    builder.Register(typeof(OpenGenericPreHandler<>));
+                    builder.Register(typeof(OpenGenericPreHandler<SimpleCommand>));
                 });
             })
             .BuildServiceProvider();

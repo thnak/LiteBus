@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using LiteBus.Messaging.Abstractions;
@@ -27,7 +29,7 @@ public sealed class QueryModuleBuilder
     /// </summary>
     /// <typeparam name="T">The type of query to register, which must implement <see cref="IRegistrableQueryConstruct" />.</typeparam>
     /// <returns>The current <see cref="QueryModuleBuilder" /> instance for method chaining.</returns>
-    public QueryModuleBuilder Register<T>() where T : IRegistrableQueryConstruct
+    public QueryModuleBuilder Register<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>() where T : IRegistrableQueryConstruct
     {
         _messageRegistry.Register(typeof(T));
         return this;
@@ -38,7 +40,7 @@ public sealed class QueryModuleBuilder
     /// </summary>
     /// <param name="type">The type of query to register, which must implement <see cref="IRegistrableQueryConstruct" />.</param>
     /// <returns>The current <see cref="QueryModuleBuilder" /> instance for method chaining.</returns>
-    public QueryModuleBuilder Register(Type type)
+    public QueryModuleBuilder Register([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type type)
     {
         if (!type.IsAssignableTo(typeof(IRegistrableQueryConstruct)))
         {
@@ -50,10 +52,45 @@ public sealed class QueryModuleBuilder
     }
 
     /// <summary>
+    ///     Registers multiple query types for the message registry.
+    ///     This overload is designed to be called with a compile-time-generated collection (e.g.
+    ///     <c>GeneratedLiteBusHandlers.QueryHandlers</c>) for AOT-safe registration without reflection.
+    ///     When called with the source-generated collection, every type in the list already implements
+    ///     <see cref="IRegistrableQueryConstruct" />, so the guard below is only a safety net for
+    ///     arbitrary callers that pass types not produced by the generator.
+    /// </summary>
+    /// <param name="types">The types to register. Each type must implement <see cref="IRegistrableQueryConstruct" />.</param>
+    /// <returns>The current <see cref="QueryModuleBuilder" /> instance for method chaining.</returns>
+    [UnconditionalSuppressMessage("Trimming", "IL2072",
+        Justification = "Types in this collection are expected to come from typeof() expressions (e.g. source-generated collections) whose metadata is preserved by the trimmer.")]
+    public QueryModuleBuilder Register(IEnumerable<Type> types)
+    {
+        ArgumentNullException.ThrowIfNull(types);
+
+        foreach (var type in types)
+        {
+            if (!type.IsAssignableTo(typeof(IRegistrableQueryConstruct)))
+            {
+                throw new NotSupportedException($"The given type '{type.Name}' is not a query construct and cannot be registered.");
+            }
+
+            _messageRegistry.Register(type);
+        }
+
+        return this;
+    }
+
+    /// <summary>
     ///     Registers all query types from the specified assembly that implement <see cref="IRegistrableQueryConstruct" />.
     /// </summary>
     /// <param name="assembly">The assembly from which to register query types.</param>
     /// <returns>The current <see cref="QueryModuleBuilder" /> instance for method chaining.</returns>
+    /// <remarks>
+    ///     This method uses <see cref="Assembly.GetTypes"/> which is not compatible with trimming or Native AOT.
+    ///     Prefer using <see cref="Register(IEnumerable{Type})"/> with a source-generated type list for AOT scenarios.
+    /// </remarks>
+    [RequiresUnreferencedCode("RegisterFromAssembly uses Assembly.GetTypes() which is not compatible with trimming. Use Register(IEnumerable<Type>) with a source-generated type list instead.")]
+    [RequiresDynamicCode("RegisterFromAssembly uses Assembly.GetTypes() which is not compatible with Native AOT. Use Register(IEnumerable<Type>) with a source-generated type list instead.")]
     public QueryModuleBuilder RegisterFromAssembly(Assembly assembly)
     {
         foreach (var registrableQueryConstruct in assembly.GetTypes().Where(t => t.IsAssignableTo(typeof(IRegistrableQueryConstruct))))
