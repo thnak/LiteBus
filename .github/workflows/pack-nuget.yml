@@ -1,0 +1,57 @@
+name: Pack NuGet Packages
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Package version (e.g. 1.0.0 or 1.0.0-preview.1)'
+        required: true
+        type: string
+
+jobs:
+  pack:
+    name: Pack and bundle NuGet packages
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+          dotnet-quality: 'preview'
+
+      - name: Restore dependencies
+        run: dotnet restore LiteBus.sln
+
+      - name: Build solution
+        run: dotnet build LiteBus.sln --no-restore --configuration Release
+
+      - name: Pack all source projects
+        run: |
+          dotnet pack LiteBus.sln \
+            --no-build \
+            --configuration Release \
+            --output "${{ github.workspace }}/nuget-output" \
+            /p:Version=${{ inputs.version }} \
+            /p:PackageVersion=${{ inputs.version }}
+
+      - name: List produced packages
+        run: ls -lh "${{ github.workspace }}/nuget-output"
+
+      - name: Create zip archive of all packages
+        run: |
+          cd "${{ github.workspace }}/nuget-output"
+          zip -r "${{ github.workspace }}/LiteBus-${{ inputs.version }}-nuget.zip" .
+
+      - name: Upload zip artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: LiteBus-${{ inputs.version }}-nuget
+          path: ${{ github.workspace }}/LiteBus-${{ inputs.version }}-nuget.zip
+          if-no-files-found: error
+          retention-days: 30
